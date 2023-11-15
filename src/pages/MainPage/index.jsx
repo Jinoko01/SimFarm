@@ -1,7 +1,8 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 const MainPage = () => {
-  return <div>메인페이지</div>;
+  return <Navigate to="/myroom" replace={true} />;
 };
 
 export default MainPage;
