@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderDiv = styled.div`
@@ -10,11 +11,13 @@ const HeaderDiv = styled.div`
 const Header = () => {
   return (
     <HeaderDiv>
-      <img
-        src={`${process.env.PUBLIC_URL}/image/Logo.png`}
-        alt="Logo"
-        style={{ height: "8vh", minHeight: "50px" }}
-      />
+      <NavLink to="/">
+        <img
+          src={`${process.env.PUBLIC_URL}/image/Logo.png`}
+          alt="Logo"
+          style={{ height: "8vh", minHeight: "50px" }}
+        />
+      </NavLink>
     </HeaderDiv>
   );
 };
