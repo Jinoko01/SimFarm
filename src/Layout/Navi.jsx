@@ -22,7 +22,7 @@ const Categories = styled(NavLink)`
   margin-top: 0.5%;
 
   &:hover {
-    font-weight: 700;
+    font-weight: 900;
   }
 
   & + & {
@@ -30,7 +30,7 @@ const Categories = styled(NavLink)`
   }
 
   &.active {
-    font-weight: 700;
+    font-weight: 900;
   }
 `;
 
