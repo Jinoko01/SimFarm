@@ -26,7 +26,7 @@ const Categories = styled(NavLink)`
   }
 
   & + & {
-    margin-left: 10rem;
+    margin-left: 20vw;
   }
 
   &.active {
