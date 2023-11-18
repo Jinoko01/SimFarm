@@ -14,8 +14,8 @@ const Game = () => {
     <Unity style={{ 
         width: "750px", 
         height: "500px",
-        justifySelf: 'center',
-        alignSelf: 'center',
+        justifySelf: 'center', // 안됨
+        alignSelf: 'center', // 안됨
       }}  unityProvider={unityProvider}/>
   </div>;
 };
