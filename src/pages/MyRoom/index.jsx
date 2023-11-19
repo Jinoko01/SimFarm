@@ -1,7 +1,12 @@
-import React from "react";
+import styled from "styled-components";
+import "../../style/GlobalCSS.scss";
+
+const MyRoomDiv = styled.div`
+  background-image: url(${process.env.PUBLIC_URL + "/image/myroom.png"});
+`;
 
 const MyRoom = () => {
-  return <div></div>;
+  return <MyRoomDiv className="wrapping"></MyRoomDiv>;
 };
 
 export default MyRoom;
