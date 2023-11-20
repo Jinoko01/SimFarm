@@ -32,6 +32,7 @@ const Game = () => {
     addEventListener("reactScoreUp", setScoreUp);
 
     return () => {
+      // Unity가 마운트될때만 detachAndUnloadImmediate함수 실행
       if (
         unityProvider &&
         detachAndUnloadImmediate &&
