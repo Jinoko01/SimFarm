@@ -12,12 +12,14 @@ const Game = () => {
     removeEventListener, // unity -> react 통신
     UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate,
   } = useUnityContext({
-    loaderUrl: "build/Addgame.loader.js",
-    dataUrl: "build/Addgame.data",
-    frameworkUrl: "build/Addgame.framework.js",
-    codeUrl: "build/Addgame.wasm",
+    loaderUrl: "build/ADV_Game1.loader.js",
+    dataUrl: "build/ADV_Game1.data",
+    frameworkUrl: "build/ADV_Game1.framework.js",
+    codeUrl: "build/ADV_Game1.wasm",
   });
 
+  // +5는 테스트 코드
+  // 아직 Game/index.jsx가 Store/index.jsx의 변수 증가를 할 줄 모름
   const setScoreUp = useCallback((curScore) => {
     setCoin(curScore + 5);
   }, []);
