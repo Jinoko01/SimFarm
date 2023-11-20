@@ -41,7 +41,7 @@ const Game = () => {
         detachAndUnloadImmediate().catch((reason) => {
           console.log(reason);
         });
-        removeEventListener("reactSpeedUp", setScoreUp);
+        removeEventListener("reactScoreUp", setScoreUp);
       }
     };
   }, [
