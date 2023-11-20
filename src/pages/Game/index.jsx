@@ -45,6 +45,7 @@ const Game = () => {
       }
     };
   }, [
+    unityProvider,
     detachAndUnloadImmediate,
     addEventListener,
     removeEventListener,
