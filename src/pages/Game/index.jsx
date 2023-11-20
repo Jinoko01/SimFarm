@@ -32,10 +32,16 @@ const Game = () => {
     addEventListener("reactScoreUp", setScoreUp);
 
     return () => {
-      detachAndUnloadImmediate().catch((reason) => {
-        console.log(reason);
-      });
-      removeEventListener("reactSpeedUp", setScoreUp);
+      if (
+        unityProvider &&
+        detachAndUnloadImmediate &&
+        typeof detachAndUnloadImmediate === "function"
+      ) {
+        detachAndUnloadImmediate().catch((reason) => {
+          console.log(reason);
+        });
+        removeEventListener("reactSpeedUp", setScoreUp);
+      }
     };
   }, [
     detachAndUnloadImmediate,
