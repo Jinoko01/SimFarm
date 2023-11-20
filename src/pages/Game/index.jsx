@@ -46,7 +46,7 @@ const Game = ({onIncrease}) => {
     removeEventListener,
     setScoreUp,
   ]);
-
+  
   return (
     <div className="wrapping">
       <Unity
