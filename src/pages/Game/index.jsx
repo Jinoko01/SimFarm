@@ -1,6 +1,7 @@
 import React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
+import "../../style/GlobalCSS.scss";
 
 const Game = () => {
   const [Coin, setCoin] = useState(0);
@@ -44,7 +45,7 @@ const Game = () => {
   ]);
 
   return (
-    <div>
+    <div className="wrapping">
       <Unity
         style={{
           width: "960px",

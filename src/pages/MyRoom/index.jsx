@@ -9,7 +9,7 @@ const MyRoom = () => {
   return (
     <MyRoomDiv className="wrapping">
       <div>
-        <h2>상세 정보</h2>
+        <h2 style={{ margin: "0" }}>상세 정보</h2>
         <div>
           <div>동물 이미지</div>
           <div>
