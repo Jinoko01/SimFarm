@@ -55,35 +55,45 @@ const DetailOvject = styled.div`
   border-radius: 20px;
 `;
 
-const AnimalDetail = () => {
-  return (
-    <AnimalDetailDiv>
-      <div className="title">
-        <h2 style={{ margin: "0" }}>상세 정보</h2>
-      </div>
-      <div className="object">
-        <DetailOvject>동물 이미지</DetailOvject>
-        <div>
-          <p>이름:</p>
-          <p>종류:</p>
+const NoneDiv = styled.div`
+  width: 30%;
+  margin: 3%;
+  border: 10px solid rgba(0, 0, 0, 0);
+`;
+
+const AnimalDetail = ({ toggle }) => {
+  if (toggle) {
+    return (
+      <AnimalDetailDiv>
+        <div className="title">
+          <h2 style={{ margin: "0" }}>상세 정보</h2>
         </div>
-      </div>
-      <div className="stats">
-        <p>키:</p>
-        <p>몸무게:</p>
-        <p>나이:</p>
-        <p>성별:</p>
-        <p>특징:</p>
-        <p>매력:</p>
-        <p>애정도:</p>
-      </div>
-      <div className="btn">
-        <button>먹이</button>
-        <button>치장</button>
-        <button>돌보기</button>
-      </div>
-    </AnimalDetailDiv>
-  );
+        <div className="object">
+          <DetailOvject>동물 이미지</DetailOvject>
+          <div>
+            <p>이름:</p>
+            <p>종류:</p>
+          </div>
+        </div>
+        <div className="stats">
+          <p>키:</p>
+          <p>몸무게:</p>
+          <p>나이:</p>
+          <p>성별:</p>
+          <p>특징:</p>
+          <p>매력:</p>
+          <p>애정도:</p>
+        </div>
+        <div className="btn">
+          <button>먹이</button>
+          <button>치장</button>
+          <button>돌보기</button>
+        </div>
+      </AnimalDetailDiv>
+    );
+  } else {
+    return <NoneDiv />;
+  }
 };
 
 export default AnimalDetail;

@@ -2,58 +2,72 @@ import styled from "styled-components";
 
 const list = [
   {
+    id: 1,
     img: "동물",
     name: "이름",
   },
   {
+    id: 2,
     img: "동물",
     name: "이름",
   },
   {
+    id: 3,
     img: "동물",
     name: "이름",
   },
   {
+    id: 4,
     img: "동물",
     name: "이름",
   },
   {
+    id: 5,
     img: "동물",
     name: "이름",
   },
   {
+    id: 6,
     img: "동물",
     name: "이름",
   },
   {
+    id: 7,
     img: "동물",
     name: "이름",
   },
   {
+    id: 8,
     img: "동물",
     name: "이름",
   },
   {
+    id: 9,
     img: "동물",
     name: "이름",
   },
   {
+    id: 10,
     img: "동물",
     name: "이름",
   },
   {
+    id: 11,
     img: "동물",
     name: "이름",
   },
   {
+    id: 12,
     img: "동물",
     name: "이름",
   },
   {
+    id: 13,
     img: "동물",
     name: "이름",
   },
   {
+    id: 14,
     img: "동물",
     name: "이름",
   },
@@ -108,12 +122,12 @@ const ListDiv = styled.div`
   }
 `;
 
-const AnimalList = ({ Gold }) => {
+const AnimalList = ({ Gold, setId, toggle, handleToggle }) => {
   return (
     <AnimalListDiv>
       <ListDiv>
         {list.map((animal) => (
-          <div className="item">
+          <div className="item" onClick={() => handleToggle(animal.id)}>
             <h3>{animal.img}</h3>
             <p>{animal.name}</p>
           </div>
