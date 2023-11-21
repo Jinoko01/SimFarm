@@ -11,13 +11,13 @@ function App() {
   const [Gold, setGold] = useState(0);
   const increaseValue = (increment) => {
     setGold(Gold + increment);
-  }
+  };
 
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<MainPage />} />
-        <Route path="/myroom" element={<MyRoom />} />
+        <Route path="/myroom" element={<MyRoom Gold={Gold} />} />
         <Route path="/store" element={<Store Gold={Gold} />} />
         <Route path="/game" element={<Game onIncrease={increaseValue} />} />
         <Route path="/contest" element={<Contest />} />

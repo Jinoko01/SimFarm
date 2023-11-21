@@ -99,6 +99,7 @@ const ListDiv = styled.div`
     background-color: rgba(255, 255, 255, 0.8);
     border: 3px solid black;
     border-radius: 20px;
+    cursor: pointer;
 
     h3,
     p {
@@ -107,7 +108,7 @@ const ListDiv = styled.div`
   }
 `;
 
-const AnimalList = () => {
+const AnimalList = ({ Gold }) => {
   return (
     <AnimalListDiv>
       <ListDiv>
@@ -119,7 +120,7 @@ const AnimalList = () => {
         ))}
       </ListDiv>
       <div className="point">
-        <h1>POINT:</h1>
+        <h1>POINT:{Gold}</h1>
       </div>
     </AnimalListDiv>
   );

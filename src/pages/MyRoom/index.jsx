@@ -8,11 +8,11 @@ const MyRoomDiv = styled.div`
   display: flex;
 `;
 
-const MyRoom = () => {
+const MyRoom = ({ Gold }) => {
   return (
     <MyRoomDiv className="wrapping">
       <AnimalDetail />
-      <AnimalList />
+      <AnimalList Gold={Gold} />
     </MyRoomDiv>
   );
 };
