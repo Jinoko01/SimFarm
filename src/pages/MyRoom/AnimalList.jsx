@@ -122,7 +122,7 @@ const ListDiv = styled.div`
   }
 `;
 
-const AnimalList = ({ Gold, setId, toggle, handleToggle }) => {
+const AnimalList = ({ Gold, handleToggle }) => {
   return (
     <AnimalListDiv>
       <ListDiv>

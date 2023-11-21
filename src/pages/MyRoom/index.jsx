@@ -30,12 +30,7 @@ const MyRoom = ({ Gold }) => {
   return (
     <MyRoomDiv className="wrapping">
       <AnimalDetail toggle={toggle} />
-      <AnimalList
-        Gold={Gold}
-        setId={setId}
-        toggle={toggle}
-        handleToggle={handleToggle}
-      />
+      <AnimalList Gold={Gold} handleToggle={handleToggle} />
     </MyRoomDiv>
   );
 };
