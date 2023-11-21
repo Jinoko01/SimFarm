@@ -11,10 +11,10 @@ const Game = ({onIncrease}) => {
     removeEventListener, // unity -> react 통신
     UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate,
   } = useUnityContext({
-    loaderUrl: "build/ADV_Game1.loader.js",
-    dataUrl: "build/ADV_Game1.data",
-    frameworkUrl: "build/ADV_Game1.framework.js",
-    codeUrl: "build/ADV_Game1.wasm",
+    loaderUrl: "build/Adv_unity.loader.js",
+    dataUrl: "build/Adv_unity.data",
+    frameworkUrl: "build/Adv_unity.framework.js",
+    codeUrl: "build/Adv_unity.wasm",
   });
 
   // +5는 테스트 코드
@@ -46,7 +46,7 @@ const Game = ({onIncrease}) => {
     removeEventListener,
     setScoreUp,
   ]);
-  
+
   return (
     <div className="wrapping">
       <Unity
