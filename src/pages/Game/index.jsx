@@ -3,9 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import "../../style/GlobalCSS.scss";
 
-const Game = () => {
-  const [Coin, setCoin] = useState(0);
-
+const Game = ({onIncrease}) => {
   const {
     unityProvider,
     sendMessage, // unity 함수를 호출하기 위한 sendMessage 추가
@@ -22,11 +20,8 @@ const Game = () => {
   // +5는 테스트 코드
   // 아직 Game/index.jsx가 Store/index.jsx의 변수 증가를 할 줄 모름
   const setScoreUp = useCallback((curScore) => {
-    setCoin(curScore + 5);
-  }, []);
-  // const reactScoreUp = (value) =>{
-  //   setCoin(preCoin => preCoin + value);
-  // }
+    onIncrease(curScore);
+  }, [onIncrease]);
 
   useEffect(() => {
     addEventListener("reactScoreUp", setScoreUp);
@@ -41,7 +36,7 @@ const Game = () => {
         detachAndUnloadImmediate().catch((reason) => {
           console.log(reason);
         });
-        removeEventListener("reactSpeedUp", setScoreUp);
+        removeEventListener("reactScoreUp", setScoreUp);
       }
     };
   }, [
@@ -51,19 +46,18 @@ const Game = () => {
     removeEventListener,
     setScoreUp,
   ]);
-
+  
   return (
     <div className="wrapping">
       <Unity
         style={{
           width: "960px",
           height: "540px",
-          justifySelf: "center", // 안됨
-          alignSelf: "center", // 안됨
+          justifySelf: "center",
+          alignSelf: "center",
         }}
         unityProvider={unityProvider}
       />
-      <p>{`Coin : ${Coin}`}</p>
     </div>
   );
 };
