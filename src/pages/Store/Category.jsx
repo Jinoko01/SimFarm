@@ -40,7 +40,7 @@ const Category = ({ handleCategory }) => {
       <button onClick={() => handleCategory("accessory")}>
         <h2>치장</h2>
       </button>
-      <button>
+      <button onClick={() => handleCategory("sales")}>
         <h2>판매</h2>
       </button>
     </CategoryDiv>
