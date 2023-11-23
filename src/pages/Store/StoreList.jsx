@@ -228,7 +228,7 @@ const StoreList = ({ Gold, category }) => {
       <div className="buy">
         <h2 className="point">POINT:{Gold}</h2>
         <button>
-          <h3>구매</h3>
+          <h3>{category !== "sales" ? "구매" : "판매"}</h3>
         </button>
       </div>
     </ListDiv>
