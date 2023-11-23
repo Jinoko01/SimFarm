@@ -32,7 +32,7 @@ const Store = ({ Gold }) => {
   return (
     <StoreDiv className="wrapping">
       <ComponentsDiv>
-        <Category handleCategory={handleCategory} />
+        <Category handleCategory={handleCategory} category={category} />
         <StoreList Gold={Gold} category={category} />
       </ComponentsDiv>
     </StoreDiv>

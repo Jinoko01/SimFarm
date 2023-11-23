@@ -16,7 +16,7 @@ const CategoryDiv = styled.div`
     }
     padding: 4% 0;
     cursor: pointer;
-    background: none;
+    background: rgba(255, 255, 255, 0.8);
     border: 3px solid rgba(0, 0, 0, 0.7);
     border-radius: 15px;
 
@@ -28,19 +28,32 @@ const CategoryDiv = styled.div`
     &:hover {
       background-color: rgba(217, 217, 217, 0.7);
     }
+
+    &.active {
+      background-color: rgba(217, 217, 217, 0.7);
+    }
   }
 `;
 
-const Category = ({ handleCategory }) => {
+const Category = ({ handleCategory, category }) => {
   return (
     <CategoryDiv>
-      <button onClick={() => handleCategory("dessert")}>
+      <button
+        className={category === "dessert" ? "active" : ""}
+        onClick={() => handleCategory("dessert")}
+      >
         <h2>간식</h2>
       </button>
-      <button onClick={() => handleCategory("accessory")}>
+      <button
+        className={category === "accessory" ? "active" : ""}
+        onClick={() => handleCategory("accessory")}
+      >
         <h2>치장</h2>
       </button>
-      <button onClick={() => handleCategory("sales")}>
+      <button
+        className={category === "sales" ? "active" : ""}
+        onClick={() => handleCategory("sales")}
+      >
         <h2>판매</h2>
       </button>
     </CategoryDiv>
