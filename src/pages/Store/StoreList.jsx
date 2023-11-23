@@ -211,10 +211,10 @@ const StoreList = ({ Gold, category }) => {
   return (
     <ListDiv>
       <div className="element">
-        {list.map((ele, i) => {
+        {list.map((ele) => {
           if (category === ele.category) {
             return (
-              <div key={i}>
+              <div>
                 <ListObject>
                   <h2>{ele.img}</h2>
                   <p>{ele.name}</p>
