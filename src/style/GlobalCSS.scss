@@ -8,3 +8,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@font-face {
+  font-family: "Bazzi";
+  src: url("../fonts/Bazzi.woff") format("truetype");
+}
+
+.contestTitle {
+  font-family: "Bazzi";
+}
