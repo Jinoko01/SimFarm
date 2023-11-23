@@ -49,7 +49,7 @@ const places = [
   },
   {
     name: "contest",
-    text: "애견대회",
+    text: "대회",
   },
 ];
 

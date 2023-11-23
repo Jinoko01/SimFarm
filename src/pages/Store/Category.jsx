@@ -10,7 +10,10 @@ const CategoryDiv = styled.div`
 
   button {
     width: 80%;
-    margin-top: 5%;
+    margin-top: 10%;
+    &:nth-child(1) {
+      margin-top: 25%;
+    }
     padding: 4% 0;
     cursor: pointer;
     background: none;
