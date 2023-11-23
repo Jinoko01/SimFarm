@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "../../style/GlobalCSS.scss";
 import Category from "./Category";
 import StoreList from "./StoreList";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const StoreDiv = styled.div`
   background-image: url(${process.env.PUBLIC_URL + "/image/store.png"});
@@ -25,9 +25,9 @@ const ComponentsDiv = styled.div`
 const Store = ({ Gold }) => {
   const [category, setCategory] = useState("dessert");
 
-  const handleCategory = (category) => {
+  const handleCategory = useCallback((category) => {
     setCategory(category);
-  };
+  }, []);
 
   return (
     <StoreDiv className="wrapping">
