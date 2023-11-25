@@ -14,7 +14,12 @@ function App() {
   };
 
   const [inventory, setInventory] = useState([]);
+  const [select, setSelect] = useState(null);
   const nextId = useRef(1);
+
+  const handleSelect = useCallback((ele) => {
+    setSelect(ele);
+  }, []);
 
   const handlePurchase = useCallback(
     (ele) => {
@@ -30,17 +35,19 @@ function App() {
         setGold((Gold) => Gold - ele.gold);
       }
       console.log(inventory);
+      setSelect(null);
     },
     [Gold, inventory]
   );
 
   const handleSales = useCallback(
-    (select) => {
+    (object) => {
       setInventory((inventory) =>
-        inventory.filter((element) => element.id !== select.id)
+        inventory.filter((element) => element.id !== object.id)
       );
       console.log(inventory);
-      setGold((Gold) => Gold + select.gold);
+      setGold((Gold) => Gold + object.gold);
+      setSelect(null);
     },
     [inventory]
   );
@@ -58,6 +65,9 @@ function App() {
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}
+              select={select}
+              setSelect={setSelect}
+              handleSelect={handleSelect}
             />
           }
         />

@@ -218,13 +218,9 @@ const StoreList = ({
   handlePurchase,
   handleSales,
   inventory,
+  select,
+  handleSelect,
 }) => {
-  const [select, setSelect] = useState(null);
-
-  const handleSelect = useCallback((ele) => {
-    setSelect(ele);
-  }, []);
-
   return (
     <ListDiv>
       <div className="element">

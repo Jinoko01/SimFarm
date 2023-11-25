@@ -22,12 +22,24 @@ const ComponentsDiv = styled.div`
   justify-content: space-evenly;
 `;
 
-const Store = ({ Gold, handlePurchase, handleSales, inventory }) => {
+const Store = ({
+  Gold,
+  handlePurchase,
+  handleSales,
+  inventory,
+  select,
+  setSelect,
+  handleSelect,
+}) => {
   const [category, setCategory] = useState("dessert");
 
-  const handleCategory = useCallback((category) => {
-    setCategory(category);
-  }, []);
+  const handleCategory = useCallback(
+    (category) => {
+      setCategory(category);
+      setSelect(null);
+    },
+    [setSelect]
+  );
 
   return (
     <StoreDiv className="wrapping">
@@ -39,6 +51,8 @@ const Store = ({ Gold, handlePurchase, handleSales, inventory }) => {
           handlePurchase={handlePurchase}
           handleSales={handleSales}
           inventory={inventory}
+          select={select}
+          handleSelect={handleSelect}
         />
       </ComponentsDiv>
     </StoreDiv>
