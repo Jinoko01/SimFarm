@@ -8,7 +8,7 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
-  const [Gold, setGold] = useState(0);
+  const [Gold, setGold] = useState(1000);
   const increaseValue = (increment) => {
     setGold(Gold + increment);
   };

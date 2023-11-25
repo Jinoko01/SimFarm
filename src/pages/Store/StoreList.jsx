@@ -212,7 +212,13 @@ const Point = styled.div`
   font-weight: 800;
 `;
 
-const StoreList = ({ Gold, category, handlePurchase }) => {
+const StoreList = ({
+  Gold,
+  category,
+  handlePurchase,
+  handleSales,
+  inventory,
+}) => {
   const [select, setSelect] = useState(null);
 
   const handleSelect = useCallback((ele) => {
@@ -240,6 +246,22 @@ const StoreList = ({ Gold, category, handlePurchase }) => {
             );
           }
         })}
+        {category === "sales" && inventory
+          ? inventory.map((ele) => (
+              <div key={ele.id}>
+                <ListObject
+                  className={select === ele ? "select" : ""}
+                  onClick={() => handleSelect(ele)}
+                >
+                  <h2>
+                    <img src={`${process.env.PUBLIC_URL + ele.img}`} />
+                  </h2>
+                  <p>{ele.name}</p>
+                </ListObject>
+                <Point>{ele.gold} P</Point>
+              </div>
+            ))
+          : null}
       </div>
       <div className="buy">
         <h2 className="point">POINT:{Gold}</h2>
@@ -248,7 +270,7 @@ const StoreList = ({ Gold, category, handlePurchase }) => {
             <h3>구매</h3>
           </button>
         ) : (
-          <button>
+          <button onClick={() => handleSales(select)}>
             <h3>판매</h3>
           </button>
         )}
