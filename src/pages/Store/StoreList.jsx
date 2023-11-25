@@ -249,8 +249,9 @@ const StoreList = ({
             );
           }
         })}
-        {category === "sales" && inventory
-          ? inventory.map((ele) => (
+        {category === "sales"
+          ? inventory &&
+            inventory.map((ele) => (
               <div key={ele.id}>
                 <ListObject
                   className={select === ele ? "select" : ""}
