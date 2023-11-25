@@ -31,16 +31,19 @@ function App() {
       }
       console.log(inventory);
     },
-    [Gold]
+    [Gold, inventory]
   );
 
-  const handleSales = useCallback((select) => {
-    setInventory((inventory) =>
-      inventory.filter((element) => element.id !== select.id)
-    );
-    console.log(inventory);
-    setGold((Gold) => Gold + select.gold);
-  }, []);
+  const handleSales = useCallback(
+    (select) => {
+      setInventory((inventory) =>
+        inventory.filter((element) => element.id !== select.id)
+      );
+      console.log(inventory);
+      setGold((Gold) => Gold + select.gold);
+    },
+    [inventory]
+  );
 
   return (
     <Routes>
