@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MyRoom from "./pages/MyRoom";
@@ -8,10 +8,39 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
-  const [Gold, setGold] = useState(0);
+  const [Gold, setGold] = useState(1000);
   const increaseValue = (increment) => {
     setGold(Gold + increment);
   };
+
+  const [inventory, setInventory] = useState([]);
+  const nextId = useRef(1);
+
+  const handlePurchase = useCallback(
+    (ele) => {
+      if (Gold < ele.gold) {
+        alert("골드가 부족합니다.");
+      } else {
+        const nextObject = {
+          ...ele,
+          id: nextId.current,
+        };
+        setInventory((inventory) => inventory.concat(nextObject));
+        nextId.current += 1;
+        setGold((Gold) => Gold - ele.gold);
+      }
+      console.log(inventory);
+    },
+    [Gold]
+  );
+
+  const handleSales = useCallback((select) => {
+    setInventory((inventory) =>
+      inventory.filter((element) => element.id !== select.id)
+    );
+    console.log(inventory);
+    setGold((Gold) => Gold + select.gold);
+  }, []);
 
   return (
     <Routes>
@@ -20,7 +49,14 @@ function App() {
         <Route path="/myroom" element={<MyRoom Gold={Gold} />} />
         <Route
           path="/store"
-          element={<Store Gold={Gold} setGold={setGold} />}
+          element={
+            <Store
+              Gold={Gold}
+              handlePurchase={handlePurchase}
+              handleSales={handleSales}
+              inventory={inventory}
+            />
+          }
         />
         <Route path="/game" element={<Game onIncrease={increaseValue} />} />
         <Route path="/contest" element={<Contest />} />
