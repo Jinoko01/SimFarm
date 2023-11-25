@@ -1,113 +1,110 @@
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 
 const list = [
   {
     id: 1,
+    name: "조류",
     category: "dessert",
-    img: "간식",
-    name: "이름",
+    gold: 2,
+    img: "/image/PNG_food_icons/alga.png",
+    grow: 2,
   },
   {
     id: 2,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
+    name: "통조림",
+    category: "dessert",
+    gold: 5,
+    img: "/image/PNG_food_icons/anchovies.png",
+    grow: 6,
   },
   {
     id: 3,
+    name: "사과",
     category: "dessert",
-    img: "간식",
-    name: "이름",
+    gold: 10,
+    img: "/image/PNG_food_icons/apple.png",
+    grow: 12,
   },
   {
     id: 4,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
+    name: "바나나",
+    category: "dessert",
+    gold: 12,
+    img: "/image/PNG_food_icons/banana.png",
+    grow: 14,
   },
   {
     id: 5,
+    name: "삶은 계란",
     category: "dessert",
-    img: "간식",
-    name: "이름",
+    gold: 15,
+    img: "/image/PNG_food_icons/eggs.png",
+    grow: 17.5,
   },
   {
     id: 6,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
+    name: "아이스크림",
+    category: "dessert",
+    gold: 18,
+    img: "/image/PNG_food_icons/ice_cream.png",
+    grow: 20.7,
   },
   {
     id: 7,
+    name: "젤리",
     category: "dessert",
-    img: "간식",
-    name: "이름",
+    gold: 20,
+    img: "/image/PNG_food_icons/jelly_bear.png",
+    grow: 22.8,
   },
   {
     id: 8,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
+    name: "파이",
+    category: "dessert",
+    gold: 25,
+    img: "/image/PNG_food_icons/pie.png",
+    grow: 28.2,
   },
   {
     id: 9,
-    category: "dessert",
-    img: "간식",
-    name: "이름",
+    name: "중절모",
+    category: "accessory",
+    gold: 5,
+    img: "/image/Hat Pack/classicFedora.png",
+    attract: 3,
   },
   {
     id: 10,
+    name: "머리띠",
     category: "accessory",
-    img: "치장",
-    name: "이름",
+    gold: 10,
+    img: "/image/Hat Pack/bunny.png",
+    attract: 6,
   },
   {
     id: 11,
-    category: "dessert",
-    img: "간식",
-    name: "이름",
+    name: "말머리",
+    category: "accessory",
+    gold: 15,
+    img: "/image/Hat Pack/horseHead.png",
+    attract: 10,
   },
   {
     id: 12,
+    name: "회전모자",
     category: "accessory",
-    img: "치장",
-    name: "이름",
+    gold: 20,
+    img: "/image/Hat Pack/pinwheel.png",
+    attract: 14,
   },
   {
     id: 13,
-    category: "dessert",
-    img: "간식",
-    name: "이름",
-  },
-  {
-    id: 14,
+    name: "왕관",
     category: "accessory",
-    img: "치장",
-    name: "이름",
-  },
-  {
-    id: 15,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
-  },
-  {
-    id: 16,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
-  },
-  {
-    id: 17,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
-  },
-  {
-    id: 18,
-    category: "accessory",
-    img: "치장",
-    name: "이름",
+    gold: 25,
+    img: "/image/Hat Pack/crown.png",
+    attract: 17,
   },
 ];
 
@@ -188,6 +185,10 @@ const ListObject = styled.div`
 
   h2 {
     text-align: center;
+    margin-bottom: 10%;
+    img {
+      width: 50%;
+    }
   }
   p {
     margin: 0;
@@ -196,6 +197,10 @@ const ListObject = styled.div`
   }
 
   &:hover {
+    background-color: rgba(217, 217, 217, 0.5);
+  }
+
+  &.select {
     background-color: rgba(217, 217, 217, 0.5);
   }
 `;
@@ -207,7 +212,13 @@ const Point = styled.div`
   font-weight: 800;
 `;
 
-const StoreList = ({ Gold, category }) => {
+const StoreList = ({ Gold, category, handlePurchase }) => {
+  const [select, setSelect] = useState(null);
+
+  const handleSelect = useCallback((ele) => {
+    setSelect(ele);
+  }, []);
+
   return (
     <ListDiv>
       <div className="element">
@@ -215,11 +226,16 @@ const StoreList = ({ Gold, category }) => {
           if (category === ele.category) {
             return (
               <div>
-                <ListObject>
-                  <h2>{ele.img}</h2>
+                <ListObject
+                  className={select === ele ? "select" : ""}
+                  onClick={() => handleSelect(ele)}
+                >
+                  <h2>
+                    <img src={`${process.env.PUBLIC_URL + ele.img}`} />
+                  </h2>
                   <p>{ele.name}</p>
                 </ListObject>
-                <Point>5p</Point>
+                <Point>{ele.gold} P</Point>
               </div>
             );
           }
@@ -227,9 +243,15 @@ const StoreList = ({ Gold, category }) => {
       </div>
       <div className="buy">
         <h2 className="point">POINT:{Gold}</h2>
-        <button>
-          <h3>{category !== "sales" ? "구매" : "판매"}</h3>
-        </button>
+        {category !== "sales" ? (
+          <button onClick={() => handlePurchase(select)}>
+            <h3>구매</h3>
+          </button>
+        ) : (
+          <button>
+            <h3>판매</h3>
+          </button>
+        )}
       </div>
     </ListDiv>
   );

@@ -37,6 +37,10 @@ const ContestDiv = styled.div`
     background-image: linear-gradient(to bottom, #5c648d, #c2b4d7);
     cursor: pointer;
     color: #e5e5e5;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 
