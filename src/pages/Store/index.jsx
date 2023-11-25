@@ -46,11 +46,20 @@ const Store = ({ Gold, setGold }) => {
         };
         setInventory((inventory) => inventory.concat(nextObject));
         nextId.current += 1;
-        setGold(Gold - ele.gold);
+        setGold((Gold) => Gold - ele.gold);
       }
+      console.log(inventory);
     },
     [Gold]
   );
+
+  const handleSales = useCallback((select) => {
+    setInventory((inventory) =>
+      inventory.filter((element) => element.id !== select.id)
+    );
+    console.log(inventory);
+    setGold((Gold) => Gold + select.gold);
+  }, []);
   // App으로 옮겨야 할 변수 및 함수
 
   return (
@@ -61,6 +70,8 @@ const Store = ({ Gold, setGold }) => {
           Gold={Gold}
           category={category}
           handlePurchase={handlePurchase}
+          handleSales={handleSales}
+          inventory={inventory}
         />
       </ComponentsDiv>
     </StoreDiv>
