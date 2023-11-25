@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "../../style/GlobalCSS.scss";
 import Category from "./Category";
 import StoreList from "./StoreList";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 const StoreDiv = styled.div`
   background-image: url(${process.env.PUBLIC_URL + "/image/store.png"});
@@ -22,18 +22,43 @@ const ComponentsDiv = styled.div`
   justify-content: space-evenly;
 `;
 
-const Store = ({ Gold }) => {
+const Store = ({ Gold, setGold }) => {
+  // 상점 컴포넌트 고정
   const [category, setCategory] = useState("dessert");
 
   const handleCategory = useCallback((category) => {
     setCategory(category);
   }, []);
+  // 상점 컴포넌트 고정
+
+  // App으로 옮겨야 할 변수 및 함수
+  const [inventory, setInventory] = useState([]);
+  const nextId = useRef(1);
+
+  const handlePurchase = useCallback((ele) => {
+    if (Gold < ele.gold) {
+      alert("골드가 부족합니다.");
+    } else {
+      const nextObject = {
+        ...ele,
+        id: nextId.current,
+      };
+      setInventory((inventory) => inventory.concat(nextObject));
+      nextId.current += 1;
+      setGold(Gold - ele.gold);
+    }
+  }, []);
+  // App으로 옮겨야 할 변수 및 함수
 
   return (
     <StoreDiv className="wrapping">
       <ComponentsDiv>
         <Category handleCategory={handleCategory} category={category} />
-        <StoreList Gold={Gold} category={category} />
+        <StoreList
+          Gold={Gold}
+          category={category}
+          handlePurchase={handlePurchase}
+        />
       </ComponentsDiv>
     </StoreDiv>
   );

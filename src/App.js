@@ -18,7 +18,10 @@ function App() {
       <Route element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="/myroom" element={<MyRoom Gold={Gold} />} />
-        <Route path="/store" element={<Store Gold={Gold} />} />
+        <Route
+          path="/store"
+          element={<Store Gold={Gold} setGold={setGold} />}
+        />
         <Route path="/game" element={<Game onIncrease={increaseValue} />} />
         <Route path="/contest" element={<Contest />} />
       </Route>
