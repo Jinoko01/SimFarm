@@ -254,7 +254,10 @@ const StoreList = ({
                   onClick={() => handleSelect(ele)}
                 >
                   <h2>
-                    <img src={`${process.env.PUBLIC_URL + ele.img}`} />
+                    <img
+                      src={process.env.PUBLIC_URL + ele.img}
+                      alt={ele.name}
+                    />
                   </h2>
                   <p>{ele.name}</p>
                 </ListObject>
