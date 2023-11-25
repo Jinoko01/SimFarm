@@ -23,6 +23,9 @@ function App() {
 
   const handlePurchase = useCallback(
     (ele) => {
+      if (select === null) {
+        return;
+      }
       if (Gold < ele.gold) {
         alert("골드가 부족합니다.");
       } else {
@@ -37,11 +40,14 @@ function App() {
       console.log(inventory);
       setSelect(null);
     },
-    [Gold, inventory]
+    [Gold, inventory, select]
   );
 
   const handleSales = useCallback(
     (object) => {
+      if (object === null) {
+        return;
+      }
       setInventory((inventory) =>
         inventory.filter((element) => element.id !== object.id)
       );
