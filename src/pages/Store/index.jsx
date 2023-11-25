@@ -35,19 +35,22 @@ const Store = ({ Gold, setGold }) => {
   const [inventory, setInventory] = useState([]);
   const nextId = useRef(1);
 
-  const handlePurchase = useCallback((ele) => {
-    if (Gold < ele.gold) {
-      alert("골드가 부족합니다.");
-    } else {
-      const nextObject = {
-        ...ele,
-        id: nextId.current,
-      };
-      setInventory((inventory) => inventory.concat(nextObject));
-      nextId.current += 1;
-      setGold(Gold - ele.gold);
-    }
-  }, []);
+  const handlePurchase = useCallback(
+    (ele) => {
+      if (Gold < ele.gold) {
+        alert("골드가 부족합니다.");
+      } else {
+        const nextObject = {
+          ...ele,
+          id: nextId.current,
+        };
+        setInventory((inventory) => inventory.concat(nextObject));
+        nextId.current += 1;
+        setGold(Gold - ele.gold);
+      }
+    },
+    [Gold]
+  );
   // App으로 옮겨야 할 변수 및 함수
 
   return (
