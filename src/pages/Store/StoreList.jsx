@@ -1,4 +1,3 @@
-import { useCallback, useState } from "react";
 import styled from "styled-components";
 
 const list = [
@@ -224,27 +223,22 @@ const StoreList = ({
   return (
     <ListDiv>
       <div className="element">
-        {list.map((ele) => {
-          if (category === ele.category) {
-            return (
-              <div>
-                <ListObject
-                  className={select === ele ? "select" : ""}
-                  onClick={() => handleSelect(ele)}
-                >
-                  <h2>
-                    <img
-                      src={process.env.PUBLIC_URL + ele.img}
-                      alt={ele.name}
-                    />
-                  </h2>
-                  <p>{ele.name}</p>
-                </ListObject>
-                <Point>{ele.gold} P</Point>
-              </div>
-            );
-          }
-        })}
+        {list.map((ele) =>
+          category === ele.category ? (
+            <div>
+              <ListObject
+                className={select === ele ? "select" : ""}
+                onClick={() => handleSelect(ele)}
+              >
+                <h2>
+                  <img src={process.env.PUBLIC_URL + ele.img} alt={ele.name} />
+                </h2>
+                <p>{ele.name}</p>
+              </ListObject>
+              <Point>{ele.gold} P</Point>
+            </div>
+          ) : null
+        )}
         {category === "sales"
           ? inventory &&
             inventory.map((ele) => (
