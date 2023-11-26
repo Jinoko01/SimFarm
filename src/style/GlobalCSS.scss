@@ -1,3 +1,19 @@
 .wrapping {
-  min-height: 600px;
+  min-width: 960px;
+  min-height: 540px;
+  width: 960px;
+  height: 540px;
+  margin: 0 auto;
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: "Bazzi";
+  src: url("../fonts/Bazzi.woff") format("truetype");
+}
+
+.contestTitle {
+  font-family: "Bazzi";
 }
