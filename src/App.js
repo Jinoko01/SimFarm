@@ -8,11 +8,35 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
+  //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
   const increaseValue = (increment) => {
     setGold(Gold + increment);
   };
+  //====================== 게임 전용 변수 및 함수==========================
 
+  //====================== 마이룸 전용 변수 및 함수==========================
+  const [list, setList] = useState([
+    { id: 1, img: "가", name: "이름" },
+    { id: 2, img: "나", name: "이름" },
+    { id: 3, img: "다", name: "이름" },
+    { id: 4, img: "라", name: "이름" },
+    { id: 5, img: "마", name: "이름" },
+  ]);
+
+  // test 함수, 필요할지 모르겠음
+  // 항목 추가
+  const addItem = (item) => {
+    setList([...list, item]);
+  };
+
+  // 항목 삭제
+  const removeItem = (itemId) => {
+    setList(list.filter((item) => item.id !== itemId));
+  };
+  //====================== 마이룸 전용 변수 및 함수==========================
+
+  //====================== 상점 전용 변수 및 함수==========================
   const [inventory, setInventory] = useState([]);
   const [select, setSelect] = useState(null);
   const nextId = useRef(1);
@@ -57,25 +81,7 @@ function App() {
     },
     [inventory]
   );
-
-  const [list, setList] = useState([
-    { id: 1, img: "가", name: "이름" },
-    { id: 2, img: "나", name: "이름" },
-    { id: 3, img: "다", name: "이름" },
-    { id: 4, img: "라", name: "이름" },
-    { id: 5, img: "마", name: "이름" },
-  ]);
-
-  // test 함수, 필요할지 모르겠음
-  // 항목 추가
-  const addItem = (item) => {
-    setList([...list, item]);
-  };
-
-  // 항목 삭제
-  const removeItem = (itemId) => {
-    setList(list.filter((item) => item.id !== itemId));
-  };
+  //====================== 상점 전용 변수 및 함수==========================
 
   return (
     <Routes>
