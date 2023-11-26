@@ -6,7 +6,7 @@ import "../../style/GlobalCSS.scss";
 const Game = ({onIncrease}) => {
   const {
     unityProvider,
-    sendMessage, // unity 함수를 호출하기 위한 sendMessage 추가
+    // sendMessage, // unity 함수를 호출하기 위한 sendMessage 추가
     addEventListener, // unity -> react 통신
     removeEventListener, // unity -> react 통신
     UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate,

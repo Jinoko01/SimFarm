@@ -9,7 +9,7 @@ const MyRoomDiv = styled.div`
   display: flex;
 `;
 
-const MyRoom = ({ Gold }) => {
+const MyRoom = ({ Gold, list, addItem, removeItem }) => {
   const [id, setId] = useState(null);
   const [toggle, setToggle] = useState(false);
 
@@ -30,7 +30,7 @@ const MyRoom = ({ Gold }) => {
   return (
     <MyRoomDiv className="wrapping">
       <AnimalDetail toggle={toggle} />
-      <AnimalList Gold={Gold} handleToggle={handleToggle} />
+      <AnimalList list={list} Gold={Gold} handleToggle={handleToggle} />
     </MyRoomDiv>
   );
 };
