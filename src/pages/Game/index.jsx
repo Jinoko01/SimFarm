@@ -1,5 +1,5 @@
 import React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import "../../style/GlobalCSS.scss";
 
