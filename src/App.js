@@ -58,11 +58,40 @@ function App() {
     [inventory]
   );
 
+  const [list, setList] = useState([
+    { id: 1, img: "가", name: "이름" },
+    { id: 2, img: "나", name: "이름" },
+    { id: 3, img: "다", name: "이름" },
+    { id: 4, img: "라", name: "이름" },
+    { id: 5, img: "마", name: "이름" },
+  ]);
+
+  // test 함수, 필요할지 모르겠음
+  // 항목 추가
+  const addItem = (item) => {
+    setList([...list, item]);
+  };
+
+  // 항목 삭제
+  const removeItem = (itemId) => {
+    setList(list.filter((item) => item.id !== itemId));
+  };
+
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<MainPage />} />
-        <Route path="/myroom" element={<MyRoom Gold={Gold} />} />
+        <Route
+          path="/myroom"
+          element={
+            <MyRoom
+              Gold={Gold}
+              list={list}
+              addItem={addItem} // tmi용, 필요없으면 삭제
+              removeItem={removeItem} // MyRoom/index.jsx props도 삭제
+            />
+          }
+        />
         <Route
           path="/store"
           element={
@@ -78,7 +107,7 @@ function App() {
           }
         />
         <Route path="/game" element={<Game onIncrease={increaseValue} />} />
-        <Route path="/contest" element={<Contest />} />
+        <Route path="/contest" element={<Contest list={list} />} />
       </Route>
     </Routes>
   );
