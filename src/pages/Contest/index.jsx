@@ -44,7 +44,7 @@ const ContestDiv = styled.div`
   }
 `;
 
-const Contest = ({list}) => {
+const Contest = ({ list }) => {
   const navigate = useNavigate();
 
   return (

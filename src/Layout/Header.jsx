@@ -11,7 +11,7 @@ const HeaderDiv = styled.div`
 const Header = () => {
   return (
     <HeaderDiv>
-      <NavLink to="/">
+      <NavLink to="/myroom"> {/* Main 못 가게 막았음 */}
         <img
           src={`${process.env.PUBLIC_URL}/image/Logo.png`}
           alt="Logo"
