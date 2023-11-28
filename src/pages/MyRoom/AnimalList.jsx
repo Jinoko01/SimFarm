@@ -10,9 +10,10 @@ const AnimalListDiv = styled.div`
   border-radius: 50px;
 
   .point {
-    margin: 0 0 2% 3%;
+    margin: 6% 0 2% 3%;
     h1 {
       font-size: 36px;
+      font-weight: 900;
     }
   }
 `;
@@ -68,6 +69,7 @@ const AnimalList = ({ Gold, handleToggle, list }) => {
               <img
                 style={{ width: "70%" }}
                 src={process.env.PUBLIC_URL + animal.img}
+                alt={animal.name}
               />
             </h3>
             <p>{animal.name}</p>

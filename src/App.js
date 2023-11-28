@@ -205,10 +205,14 @@ function App() {
           element={
             <MyRoom
               Gold={Gold}
+              setGold={setGold}
               list={list}
               nextAnimalId={nextAnimalId}
               addItem={addItem}
               removeItem={removeItem}
+              inventory={inventory}
+              setInventory={setInventory}
+              select={select}
             />
           }
         />
