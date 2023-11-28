@@ -63,15 +63,15 @@ const AnimalDetailDiv = styled.div`
   }
 `;
 
-const DetailOvject = styled.div`
-  width: 26%;
+const DetailObject = styled.div`
+  width: 33%;
   margin: 4% 4% 0 4%;
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px solid black;
   border-radius: 20px;
+  text-align: center;
 
   img {
-    text-align: center;
     margin: 0;
   }
 `;
@@ -118,13 +118,13 @@ const AnimalDetail = ({
           <h2 style={{ margin: "0" }}>상세 정보</h2>
         </div>
         <div className="object">
-          <DetailOvject>
+          <DetailObject>
             <img
-              style={{ width: "100%" }}
+              style={{ width: "90%" }}
               src={process.env.PUBLIC_URL + object.img}
               alt={object.name}
             />
-          </DetailOvject>
+          </DetailObject>
           <div className="name">
             <p>이름: {object.name}</p>
             <p>종류: {object.sort}</p>
@@ -149,7 +149,10 @@ const AnimalDetail = ({
           </div>
           <div>
             <p className="stat">매력:</p>
-            <p className="value">{object.attract}</p>
+            <p className="value">
+              {object.attract +
+                (object.accessory ? object.accessory.attract : 0)}
+            </p>
           </div>
           <div>
             <p className="stat">애정도:</p>
@@ -157,7 +160,9 @@ const AnimalDetail = ({
           </div>
           <div>
             <p className="stat">치장:</p>
-            <p className="value">{object.accessory}</p>
+            <p className="value">
+              {object.accessory.name ? object.accessory.name : "없음"}
+            </p>
           </div>
         </div>
         <div className="btn">
