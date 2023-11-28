@@ -91,7 +91,7 @@ const MainPage = () => {
 
     // 선택이 이미 이루어진 경우 바로 /myroom으로 리디렉트
   if (hasChosen) {
-    navigateTo('/myroom', { state: { pet: selectedPet } });
+    navigateTo('/myroom', "");
   }
 
   return (
