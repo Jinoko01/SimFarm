@@ -15,7 +15,6 @@ const MyRoom = ({ Gold, list, addItem, removeItem }) => {
 
   const handleToggle = useCallback(
     (objectId) => {
-      console.log(objectId);
       if (objectId !== id) {
         setToggle(true);
         setId(objectId);
@@ -29,7 +28,7 @@ const MyRoom = ({ Gold, list, addItem, removeItem }) => {
 
   return (
     <MyRoomDiv className="wrapping">
-      <AnimalDetail toggle={toggle} />
+      <AnimalDetail list={list} id={id} toggle={toggle} />
       <AnimalList list={list} Gold={Gold} handleToggle={handleToggle} />
     </MyRoomDiv>
   );

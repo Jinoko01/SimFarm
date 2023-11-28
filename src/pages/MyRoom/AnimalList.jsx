@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 const AnimalListDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,17 +34,26 @@ const ListDiv = styled.div`
   }
 
   .item {
-    width: 15%;
-    height: 28.5%;
+    width: 23%;
+    height: 37%;
     margin: 4% 4% 0 4%;
     background-color: rgba(255, 255, 255, 0.8);
     border: 3px solid black;
     border-radius: 20px;
     cursor: pointer;
 
-    h3,
+    h3 {
+      text-align: center;
+      margin: 0;
+    }
+
     p {
       text-align: center;
+      margin-top: 10%;
+    }
+
+    &:hover {
+      background-color: rgba(217, 217, 217, 0.5);
     }
   }
 `;
@@ -57,7 +64,12 @@ const AnimalList = ({ Gold, handleToggle, list }) => {
       <ListDiv>
         {list.map((animal) => (
           <div className="item" onClick={() => handleToggle(animal.id)}>
-            <h3>{animal.img}</h3>
+            <h3>
+              <img
+                style={{ width: "70%" }}
+                src={process.env.PUBLIC_URL + animal.img}
+              />
+            </h3>
             <p>{animal.name}</p>
           </div>
         ))}
