@@ -217,6 +217,7 @@ function App() {
           element={
             <Store
               Gold={Gold}
+              list={list}
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}

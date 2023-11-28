@@ -51,6 +51,12 @@ const Category = ({ handleCategory, category }) => {
         <h2>치장</h2>
       </button>
       <button
+        className={category === "pet" ? "active" : ""}
+        onClick={() => handleCategory("pet")}
+      >
+        <h2>동물</h2>
+      </button>
+      <button
         className={category === "sales" ? "active" : ""}
         onClick={() => handleCategory("sales")}
       >
