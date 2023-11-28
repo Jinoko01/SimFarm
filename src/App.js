@@ -8,6 +8,7 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
+  const [hasChosen, setHasChosen] = useState(false);
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
   const increaseValue = (increment) => {
@@ -123,6 +124,9 @@ function App() {
     },
   ]);
 
+  // 동물 리스트 다음 ID
+  const nextAnimalId = useRef(9);
+
   // 항목 추가
   const addItem = (item) => {
     setList([...list, item]);
@@ -184,13 +188,25 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<MainPage />} />
+        <Route
+          index
+          element={
+            <MainPage
+              hasChosen={hasChosen}
+              setHasChosen={setHasChosen}
+              list={list}
+              addItem={addItem}
+              nextAnimalId={nextAnimalId}
+            />
+          }
+        />
         <Route
           path="/myroom"
           element={
             <MyRoom
               Gold={Gold}
               list={list}
+              nextAnimalId={nextAnimalId}
               addItem={addItem}
               removeItem={removeItem}
             />
