@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MyRoom from "./pages/MyRoom";
 import Store from "./pages/Store";
@@ -8,6 +8,10 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
+  // localStorage에서 hasChosen 값을 읽어와서 초기 상태를 설정
+  const [hasChosen, setHasChosen] = useState(
+    localStorage.getItem("hasChosen") === "true"
+  );
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
   const increaseValue = (increment) => {
@@ -17,8 +21,114 @@ function App() {
 
   //====================== 마이룸 전용 변수 및 함수==========================
   const [list, setList] = useState([
-    { id: 1, img: "가", name: "이름" },
+    {
+      id: 1,
+      img: "/image/beetle/1.png",
+      name: "빗흘",
+      sort: "비틀",
+      height: 0.25,
+      weight: 0.1,
+      age: 1,
+      feature: "고약한 악취",
+      attract: 50,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 2,
+      img: "/image/bird/1.png",
+      name: "쇄",
+      sort: "새",
+      height: 20,
+      weight: 7,
+      age: 1,
+      feature: "하늘을 나는 동물",
+      attract: 50,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 3,
+      img: "/image/snake/1.png",
+      name: "빼앰",
+      sort: "뱀",
+      height: 5,
+      weight: 3,
+      age: 1,
+      feature: "미끌거림",
+      attract: 50,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 4,
+      img: "/image/frog/1.png",
+      name: "개굴이",
+      sort: "개구리",
+      height: 3,
+      weight: 1,
+      age: 1,
+      feature: "개구리 알 생성",
+      attract: 60,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 5,
+      img: "/image/bat/1.png",
+      name: "Park쥐",
+      sort: "박쥐",
+      height: 7,
+      weight: 3,
+      age: 1,
+      feature: "구아노 생성",
+      attract: 50,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 6,
+      img: "/image/goat.png",
+      name: "Goat",
+      sort: "염소",
+      height: 70,
+      weight: 20,
+      age: 1,
+      feature: "염소 털 생성",
+      attract: 70,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 7,
+      img: "/image/snail.png",
+      name: "핑핑이",
+      sort: "달팽이",
+      height: 5,
+      weight: 1,
+      age: 1,
+      feature: "달팽이 크림 생성",
+      attract: 50,
+      affect: 0,
+      accessory: "",
+    },
+    {
+      id: 8,
+      img: "/image/bee.png",
+      name: "B",
+      sort: "꿀벌",
+      height: 1,
+      weight: 0.4,
+      age: 1,
+      feature: "꿀 생성",
+      attract: 50,
+      affect: 0,
+      accessory: "",
+    },
   ]);
+
+  // 동물 리스트 다음 ID
+  const nextAnimalId = useRef(9);
 
   // 항목 추가
   const addItem = (item) => {
@@ -78,16 +188,38 @@ function App() {
   );
   //====================== 상점 전용 변수 및 함수==========================
 
+  useEffect(() => {
+    // hasChosen 상태가 변경될 때 localStorage 값을 업데이트
+    localStorage.setItem("hasChosen", hasChosen);
+  }, [hasChosen]);
+
+
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<MainPage />} />
+        {
+          hasChosen
+          ? <Route path="/" element={<Navigate to="/myroom" />} />
+          : <Route
+              index
+              element={
+                <MainPage
+                hasChosen={hasChosen}
+                setHasChosen={setHasChosen}
+                list={list}
+                addItem={addItem}
+                nextAnimalId={nextAnimalId}
+              />
+              }
+            />
+        }
         <Route
           path="/myroom"
           element={
             <MyRoom
               Gold={Gold}
               list={list}
+              nextAnimalId={nextAnimalId}
               addItem={addItem}
               removeItem={removeItem}
             />
@@ -98,6 +230,7 @@ function App() {
           element={
             <Store
               Gold={Gold}
+              list={list}
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}

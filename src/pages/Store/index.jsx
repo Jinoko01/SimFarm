@@ -24,6 +24,7 @@ const ComponentsDiv = styled.div`
 
 const Store = ({
   Gold,
+  list,
   handlePurchase,
   handleSales,
   inventory,

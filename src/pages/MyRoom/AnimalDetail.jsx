@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import styled from "styled-components";
 
 const AnimalDetailDiv = styled.div`
@@ -22,10 +23,18 @@ const AnimalDetailDiv = styled.div`
 
   .stats {
     margin-left: 7%;
+    height: 55%;
 
-    p {
-      width: 25%;
-      text-align: right;
+    div {
+      display: flex;
+      height: 13%;
+      .stat {
+        width: 25%;
+        text-align: right;
+      }
+      .value {
+        margin-left: 5%;
+      }
     }
   }
 
@@ -53,6 +62,11 @@ const DetailOvject = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px solid black;
   border-radius: 20px;
+
+  img {
+    text-align: center;
+    margin: 0;
+  }
 `;
 
 const NoneDiv = styled.div`
@@ -61,7 +75,16 @@ const NoneDiv = styled.div`
   border: 10px solid rgba(0, 0, 0, 0);
 `;
 
-const AnimalDetail = ({ toggle }) => {
+const AnimalDetail = ({ list, id, toggle }) => {
+  const getObject = () => {
+    for (let key in list) {
+      if (list[key].id === id) {
+        return list[key];
+      }
+    }
+  };
+
+  const object = useMemo(() => getObject(), [list, id]);
   if (toggle) {
     return (
       <AnimalDetailDiv>
@@ -69,20 +92,47 @@ const AnimalDetail = ({ toggle }) => {
           <h2 style={{ margin: "0" }}>상세 정보</h2>
         </div>
         <div className="object">
-          <DetailOvject>동물 이미지</DetailOvject>
+          <DetailOvject>
+            <img
+              style={{ width: "100%" }}
+              src={process.env.PUBLIC_URL + object.img}
+              alt={object.name}
+            />
+          </DetailOvject>
           <div>
-            <p>이름:</p>
-            <p>종류:</p>
+            <p>이름: {object.name}</p>
+            <p>종류: {object.sort}</p>
           </div>
         </div>
         <div className="stats">
-          <p>키:</p>
-          <p>몸무게:</p>
-          <p>나이:</p>
-          <p>성별:</p>
-          <p>특징:</p>
-          <p>매력:</p>
-          <p>애정도:</p>
+          <div>
+            <p className="stat">키:</p>
+            <p className="value">{object.height}</p>
+          </div>
+          <div>
+            <p className="stat">몸무게:</p>
+            <p className="value">{object.weight}</p>
+          </div>
+          <div>
+            <p className="stat">나이:</p>
+            <p className="value">{object.age}</p>
+          </div>
+          <div>
+            <p className="stat">특징:</p>
+            <p className="value">{object.feature}</p>
+          </div>
+          <div>
+            <p className="stat">매력:</p>
+            <p className="value">{object.attract}</p>
+          </div>
+          <div>
+            <p className="stat">애정도:</p>
+            <p className="value">{object.affect}</p>
+          </div>
+          <div>
+            <p className="stat">치장:</p>
+            <p className="value">{object.accessory}</p>
+          </div>
         </div>
         <div className="btn">
           <button>먹이</button>
