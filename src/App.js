@@ -123,7 +123,6 @@ function App() {
     },
   ]);
 
-  // test 함수, 필요할지 모르겠음
   // 항목 추가
   const addItem = (item) => {
     setList([...list, item]);
@@ -192,8 +191,8 @@ function App() {
             <MyRoom
               Gold={Gold}
               list={list}
-              addItem={addItem} // tmi용, 필요없으면 삭제
-              removeItem={removeItem} // MyRoom/index.jsx props도 삭제
+              addItem={addItem}
+              removeItem={removeItem}
             />
           }
         />
