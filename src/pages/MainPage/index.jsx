@@ -4,9 +4,29 @@ import { Navigate, useNavigate } from "react-router-dom";
 import "../../style/GlobalCSS.scss";
 import styled from "styled-components";
 
-const PetImage1 = process.env.PUBLIC_URL + "/image/Animal/beetle1.png";
-const PetImage2 = process.env.PUBLIC_URL + "/image/Animal/snake1.png";
-const PetImage3 = process.env.PUBLIC_URL + "/image/Animal/bird1.png";
+const pet = [
+  {
+    id: 1,
+    img: process.env.PUBLIC_URL + "/image/beetle/1.png",
+    sort: "딱정벌레",
+    eng: "beetle",
+    feature: "고약한 악취",
+  },
+  {
+    id: 2,
+    img: process.env.PUBLIC_URL + "/image/snake/1.png",
+    sort: "뱀",
+    eng: "snake",
+    feature: "미끌거림",
+  },
+  {
+    id: 3,
+    img: process.env.PUBLIC_URL + "/image/bird/1.png",
+    sort: "새",
+    eng: "bird",
+    feature: "하늘을 나는 동물",
+  },
+];
 
 const PetImage = styled.img`
   width: 150px; // Set your desired size
@@ -74,9 +94,10 @@ const MainPageDiv = styled.div`
 const MainPage = ({ hasChosen, setHasChosen, list, addItem, nextAnimalId }) => {
   const [selectedPet, setSelectedPet] = useState(null);
   const navigateTo = useNavigate();
+  console.log(hasChosen);
 
-  const handlePetClick = (petName) => {
-    setSelectedPet(petName);
+  const handlePetClick = (petName, petImg, feature) => {
+    setSelectedPet({ petName, petImg, feature });
   };
 
   const handleNavigate = () => {
@@ -84,13 +105,13 @@ const MainPage = ({ hasChosen, setHasChosen, list, addItem, nextAnimalId }) => {
       setHasChosen(true);
       addItem({
         id: nextAnimalId.current,
-        img: `/image/Animal/${selectedPet}1.png`,
-        name: selectedPet,
-        sort: "꿀벌",
+        img: `/image/${selectedPet.petImg}/1.png`,
+        name: selectedPet.petName,
+        sort: selectedPet.petName,
         height: 1,
         weight: 0.4,
         age: 1,
-        feature: "꿀 생성",
+        feature: selectedPet.feature,
         attract: 50,
         affect: 0,
         accessory: "",
@@ -113,39 +134,24 @@ const MainPage = ({ hasChosen, setHasChosen, list, addItem, nextAnimalId }) => {
         </div>
 
         <div className="pet_img">
-          <div>
-            <PetImage
-              src={PetImage1}
-              alt="beetle"
-              onClick={() => handlePetClick("beetle")}
-              style={{
-                border: selectedPet === "beetle" ? "2px solid blue" : "none",
-              }}
-            />
-            <PetName>Beetle</PetName>
-          </div>
-          <div>
-            <PetImage
-              src={PetImage2}
-              alt="snake"
-              onClick={() => handlePetClick("snake")}
-              style={{
-                border: selectedPet === "snake" ? "2px solid blue" : "none",
-              }}
-            />
-            <PetName>Snake</PetName>
-          </div>
-          <div>
-            <PetImage
-              src={PetImage3}
-              alt="bird"
-              onClick={() => handlePetClick("bird")}
-              style={{
-                border: selectedPet === "bird" ? "2px solid blue" : "none",
-              }}
-            />
-            <PetName>Bird</PetName>
-          </div>
+          {pet.map((animal) => (
+            <div>
+              <PetImage
+                src={animal.img}
+                alt={animal.sort}
+                onClick={() =>
+                  handlePetClick(animal.sort, animal.eng, animal.feature)
+                }
+                style={{
+                  border:
+                    selectedPet && selectedPet.petName === animal.sort
+                      ? "2px solid blue"
+                      : "none",
+                }}
+              />
+              <PetName>{animal.eng}</PetName>
+            </div>
+          ))}
         </div>
 
         <div className="startBtn" onClick={handleNavigate}>
