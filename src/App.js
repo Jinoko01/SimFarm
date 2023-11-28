@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MyRoom from "./pages/MyRoom";
 import Store from "./pages/Store";
@@ -8,7 +8,10 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
-  const [hasChosen, setHasChosen] = useState(false);
+  // localStorage에서 hasChosen 값을 읽어와서 초기 상태를 설정
+  const [hasChosen, setHasChosen] = useState(
+    localStorage.getItem("hasChosen") === "true"
+  );
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
   const increaseValue = (increment) => {
@@ -185,21 +188,31 @@ function App() {
   );
   //====================== 상점 전용 변수 및 함수==========================
 
+  useEffect(() => {
+    // hasChosen 상태가 변경될 때 localStorage 값을 업데이트
+    localStorage.setItem("hasChosen", hasChosen);
+  }, [hasChosen]);
+
+
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route
-          index
-          element={
-            <MainPage
-              hasChosen={hasChosen}
-              setHasChosen={setHasChosen}
-              list={list}
-              addItem={addItem}
-              nextAnimalId={nextAnimalId}
+        {
+          hasChosen
+          ? <Route path="/" element={<Navigate to="/myroom" />} />
+          : <Route
+              index
+              element={
+                <MainPage
+                hasChosen={hasChosen}
+                setHasChosen={setHasChosen}
+                list={list}
+                addItem={addItem}
+                nextAnimalId={nextAnimalId}
+              />
+              }
             />
-          }
-        />
+        }
         <Route
           path="/myroom"
           element={
@@ -221,6 +234,7 @@ function App() {
           element={
             <Store
               Gold={Gold}
+              list={list}
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}
