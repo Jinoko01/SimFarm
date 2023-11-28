@@ -48,6 +48,7 @@ const Store = ({
         <Category handleCategory={handleCategory} category={category} />
         <StoreList
           Gold={Gold}
+          petlist={list}
           category={category}
           handlePurchase={handlePurchase}
           handleSales={handleSales}

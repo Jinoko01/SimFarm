@@ -193,7 +193,6 @@ function App() {
     localStorage.setItem("hasChosen", hasChosen);
   }, [hasChosen]);
 
-
   return (
     <Routes>
       <Route element={<Layout />}>

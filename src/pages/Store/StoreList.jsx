@@ -213,6 +213,7 @@ const Point = styled.div`
 
 const StoreList = ({
   Gold,
+  petlist,
   category,
   handlePurchase,
   handleSales,
