@@ -15,11 +15,13 @@ const CareModal = ({ show, hide, object, Gold, setGold }) => {
   return (
     <Modal show={show} onHide={hide}>
       <Modal.Header>
-        <Modal.Title>먹이 주기</Modal.Title>
+        <Modal.Title>돌보기</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        돌보시겠습니까? <br />
-        필요 포인트: 30P
+        <div style={{ textAlign: "center" }}>
+          돌보시겠습니까? <br />
+          필요 포인트: 30P
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button className="btn_close" onClick={handleCare}>
