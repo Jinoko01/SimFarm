@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MyRoom from "./pages/MyRoom";
 import Store from "./pages/Store";
@@ -8,6 +8,7 @@ import Contest from "./pages/Contest";
 import Layout from "./Layout";
 
 function App() {
+  const location = useLocation();
   const [hasChosen, setHasChosen] = useState(false);
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
@@ -185,21 +186,33 @@ function App() {
   );
   //====================== 상점 전용 변수 및 함수==========================
 
+  useEffect(()=>{
+    if(location.pathname !== "/" && hasChosen === false){
+      setHasChosen(true);
+    }
+  },[location.pathname,hasChosen]);
+
+
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route
-          index
-          element={
-            <MainPage
-              hasChosen={hasChosen}
-              setHasChosen={setHasChosen}
-              list={list}
-              addItem={addItem}
-              nextAnimalId={nextAnimalId}
-            />
-          }
-        />
+        {
+          (hasChosen) ? null
+          :
+          <Route
+            index
+            element={
+              <MainPage
+                hasChosen={hasChosen}
+                setHasChosen={setHasChosen}
+                list={list}
+                addItem={addItem}
+                nextAnimalId={nextAnimalId}
+              />
+            }
+          />
+        }
+        
         <Route
           path="/myroom"
           element={
