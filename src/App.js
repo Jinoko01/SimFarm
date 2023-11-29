@@ -20,10 +20,17 @@ function App() {
   //====================== 게임 전용 변수 및 함수==========================
 
   //====================== 마이룸 전용 변수 및 함수==========================
+
   const [list, setList] = useState([
     {
       id: 1,
-      img: "/image/beetle/1.png",
+      img: function () {
+        return this.attract < 80
+          ? "/image/beetle/1.png"
+          : this.attract < 100
+          ? "/image/beetle/2.png"
+          : "/image/beetle/3.png";
+      },
       name: "빗흘",
       sort: "비틀",
       height: 0.25,
@@ -36,7 +43,13 @@ function App() {
     },
     {
       id: 2,
-      img: "/image/bird/1.png",
+      img: function () {
+        return this.attract < 80
+          ? "/image/bird/1.png"
+          : this.attract < 100
+          ? "/image/bird/2.png"
+          : "/image/bird/3.png";
+      },
       name: "쇄",
       sort: "새",
       height: 20,
@@ -49,7 +62,13 @@ function App() {
     },
     {
       id: 3,
-      img: "/image/snake/1.png",
+      img: function () {
+        return this.attract < 80
+          ? "/image/snake/1.png"
+          : this.attract < 100
+          ? "/image/snake/2.png"
+          : "/image/snake/3.png";
+      },
       name: "빼앰",
       sort: "뱀",
       height: 5,
@@ -62,7 +81,9 @@ function App() {
     },
     {
       id: 4,
-      img: "/image/frog/1.png",
+      img: function () {
+        return this.attract < 90 ? "/image/frog/1.png" : "/image/frog/2.png";
+      },
       name: "개굴이",
       sort: "개구리",
       height: 3,
@@ -75,7 +96,9 @@ function App() {
     },
     {
       id: 5,
-      img: "/image/bat/1.png",
+      img: function () {
+        return this.attract < 90 ? "/image/bat/1.png" : "/image/bat/2.png";
+      },
       name: "Park쥐",
       sort: "박쥐",
       height: 7,
@@ -88,7 +111,9 @@ function App() {
     },
     {
       id: 6,
-      img: "/image/goat.png",
+      img: function () {
+        return "/image/goat.png";
+      },
       name: "Goat",
       sort: "염소",
       height: 70,
@@ -101,7 +126,9 @@ function App() {
     },
     {
       id: 7,
-      img: "/image/snail.png",
+      img: function () {
+        return "/image/snail.png";
+      },
       name: "핑핑이",
       sort: "달팽이",
       height: 5,
@@ -114,7 +141,9 @@ function App() {
     },
     {
       id: 8,
-      img: "/image/bee.png",
+      img: function () {
+        return "/image/bee.png";
+      },
       name: "B",
       sort: "꿀벌",
       height: 1,
@@ -193,26 +222,25 @@ function App() {
     localStorage.setItem("hasChosen", hasChosen);
   }, [hasChosen]);
 
-
   return (
     <Routes>
       <Route element={<Layout />}>
-        {
-          hasChosen
-          ? <Route path="/" element={<Navigate to="/myroom" />} />
-          : <Route
-              index
-              element={
-                <MainPage
+        {hasChosen ? (
+          <Route path="/" element={<Navigate to="/myroom" />} />
+        ) : (
+          <Route
+            index
+            element={
+              <MainPage
                 hasChosen={hasChosen}
                 setHasChosen={setHasChosen}
                 list={list}
                 addItem={addItem}
                 nextAnimalId={nextAnimalId}
               />
-              }
-            />
-        }
+            }
+          />
+        )}
         <Route
           path="/myroom"
           element={

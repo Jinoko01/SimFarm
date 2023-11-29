@@ -68,7 +68,7 @@ const AnimalList = ({ Gold, handleToggle, list }) => {
             <h3>
               <img
                 style={{ width: "70%" }}
-                src={process.env.PUBLIC_URL + animal.img}
+                src={process.env.PUBLIC_URL + animal.img()}
                 alt={animal.name}
               />
             </h3>

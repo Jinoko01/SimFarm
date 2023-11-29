@@ -121,7 +121,7 @@ const AnimalDetail = ({
           <DetailObject>
             <img
               style={{ width: "90%" }}
-              src={process.env.PUBLIC_URL + object.img}
+              src={process.env.PUBLIC_URL + object.img()}
               alt={object.name}
             />
           </DetailObject>
