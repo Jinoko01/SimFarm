@@ -105,7 +105,13 @@ const MainPage = ({ hasChosen, setHasChosen, list, addItem, nextAnimalId }) => {
       setHasChosen(true);
       addItem({
         id: nextAnimalId.current,
-        img: `/image/${selectedPet.petImg}/1.png`,
+        img: function () {
+          return this.attract < 80
+            ? `/image/${selectedPet.petImg}/1.png`
+            : this.attract < 100
+            ? `/image/${selectedPet.petImg}/2.png`
+            : `/image/${selectedPet.petImg}/3.png`;
+        },
         name: selectedPet.petName,
         sort: selectedPet.petName,
         height: 1,

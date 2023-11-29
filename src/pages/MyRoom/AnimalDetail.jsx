@@ -1,5 +1,8 @@
-import { useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import styled from "styled-components";
+import DessertModal from "./DessertModal";
+import AccessoryModal from "./AccessoryModal";
+import CareModal from "./CareModal";
 
 const AnimalDetailDiv = styled.div`
   display: flex;
@@ -19,6 +22,10 @@ const AnimalDetailDiv = styled.div`
     display: flex;
     height: 25%;
     gap: 13%;
+
+    .name {
+      margin-top: 5%;
+    }
   }
 
   .stats {
@@ -56,15 +63,15 @@ const AnimalDetailDiv = styled.div`
   }
 `;
 
-const DetailOvject = styled.div`
-  width: 26%;
+const DetailObject = styled.div`
+  width: 33%;
   margin: 4% 4% 0 4%;
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px solid black;
   border-radius: 20px;
+  text-align: center;
 
   img {
-    text-align: center;
     margin: 0;
   }
 `;
@@ -75,16 +82,35 @@ const NoneDiv = styled.div`
   border: 10px solid rgba(0, 0, 0, 0);
 `;
 
-const AnimalDetail = ({ list, id, toggle }) => {
-  const getObject = () => {
-    for (let key in list) {
-      if (list[key].id === id) {
-        return list[key];
+const AnimalDetail = ({
+  petlist,
+  id,
+  toggle,
+  inventory,
+  setInventory,
+  Gold,
+  setGold,
+}) => {
+  const [dessertShow, setDessertShow] = useState(false);
+  const [accessoryShow, setAccessoryShow] = useState(false);
+  const [careShow, setCareShow] = useState(false);
+
+  const handleDessertClese = () => setDessertShow(false);
+  const handleAccessoryClese = () => setAccessoryShow(false);
+  const handleCareClose = () => setCareShow(false);
+  const handleDessertShow = () => setDessertShow(true);
+  const handleAccessoryShow = () => setAccessoryShow(true);
+  const handleCareShow = () => setCareShow(true);
+
+  const getObject = useCallback(() => {
+    for (let key in petlist) {
+      if (petlist[key].id === id) {
+        return petlist[key];
       }
     }
-  };
+  }, [petlist, id]);
 
-  const object = useMemo(() => getObject(), [list, id]);
+  const object = useMemo(() => getObject(), [getObject]);
   if (toggle) {
     return (
       <AnimalDetailDiv>
@@ -92,14 +118,14 @@ const AnimalDetail = ({ list, id, toggle }) => {
           <h2 style={{ margin: "0" }}>상세 정보</h2>
         </div>
         <div className="object">
-          <DetailOvject>
+          <DetailObject>
             <img
-              style={{ width: "100%" }}
-              src={process.env.PUBLIC_URL + object.img}
+              style={{ width: "90%" }}
+              src={process.env.PUBLIC_URL + object.img()}
               alt={object.name}
             />
-          </DetailOvject>
-          <div>
+          </DetailObject>
+          <div className="name">
             <p>이름: {object.name}</p>
             <p>종류: {object.sort}</p>
           </div>
@@ -123,7 +149,10 @@ const AnimalDetail = ({ list, id, toggle }) => {
           </div>
           <div>
             <p className="stat">매력:</p>
-            <p className="value">{object.attract}</p>
+            <p className="value">
+              {object.attract +
+                (object.accessory ? object.accessory.attract : 0)}
+            </p>
           </div>
           <div>
             <p className="stat">애정도:</p>
@@ -131,14 +160,37 @@ const AnimalDetail = ({ list, id, toggle }) => {
           </div>
           <div>
             <p className="stat">치장:</p>
-            <p className="value">{object.accessory}</p>
+            <p className="value">
+              {object.accessory.name ? object.accessory.name : "없음"}
+            </p>
           </div>
         </div>
         <div className="btn">
-          <button>먹이</button>
-          <button>치장</button>
-          <button>돌보기</button>
+          <button onClick={handleDessertShow}>먹이</button>
+          <button onClick={handleAccessoryShow}>치장</button>
+          <button onClick={handleCareShow}>돌보기</button>
         </div>
+        <DessertModal
+          show={dessertShow}
+          hide={handleDessertClese}
+          object={object}
+          inventory={inventory}
+          setInventory={setInventory}
+        />
+        <AccessoryModal
+          show={accessoryShow}
+          hide={handleAccessoryClese}
+          object={object}
+          inventory={inventory}
+          setInventory={setInventory}
+        />
+        <CareModal
+          show={careShow}
+          hide={handleCareClose}
+          object={object}
+          Gold={Gold}
+          setGold={setGold}
+        />
       </AnimalDetailDiv>
     );
   } else {

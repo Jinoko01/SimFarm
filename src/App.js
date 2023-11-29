@@ -6,6 +6,8 @@ import Store from "./pages/Store";
 import Game from "./pages/Game";
 import Contest from "./pages/Contest";
 import Layout from "./Layout";
+import SelectPage from "./pages/Contest/SelectPage";
+import ResultPage from "./pages/Contest/ResultPage";
 
 function App() {
   // localStorage에서 hasChosen 값을 읽어와서 초기 상태를 설정
@@ -14,21 +16,31 @@ function App() {
   );
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
+  const [myPets, setMyPets] = useState([]); // 내가 갖고있는 동물
   const increaseValue = (increment) => {
     setGold(Gold + increment);
   };
   //====================== 게임 전용 변수 및 함수==========================
 
   //====================== 마이룸 전용 변수 및 함수==========================
-  const [list, setList] = useState([
+
+  const [petlist, setpetList] = useState([
     {
       id: 1,
-      img: "/image/beetle/1.png",
+      img: function () {
+        return this.attract < 80
+          ? "/image/beetle/1.png"
+          : this.attract < 100
+          ? "/image/beetle/2.png"
+          : "/image/beetle/3.png";
+      },
       name: "빗흘",
       sort: "비틀",
       height: 0.25,
       weight: 0.1,
       age: 1,
+      gold: 5,
+      category: 'pet',
       feature: "고약한 악취",
       attract: 50,
       affect: 0,
@@ -36,12 +48,20 @@ function App() {
     },
     {
       id: 2,
-      img: "/image/bird/1.png",
+      img: function () {
+        return this.attract < 80
+          ? "/image/bird/1.png"
+          : this.attract < 100
+          ? "/image/bird/2.png"
+          : "/image/bird/3.png";
+      },
       name: "쇄",
       sort: "새",
       height: 20,
       weight: 7,
       age: 1,
+      gold: 5,
+      category: 'pet',
       feature: "하늘을 나는 동물",
       attract: 50,
       affect: 0,
@@ -49,12 +69,20 @@ function App() {
     },
     {
       id: 3,
-      img: "/image/snake/1.png",
+      img: function () {
+        return this.attract < 80
+          ? "/image/snake/1.png"
+          : this.attract < 100
+          ? "/image/snake/2.png"
+          : "/image/snake/3.png";
+      },
       name: "빼앰",
       sort: "뱀",
       height: 5,
       weight: 3,
       age: 1,
+      gold: 5,
+      category: 'pet',
       feature: "미끌거림",
       attract: 50,
       affect: 0,
@@ -62,12 +90,16 @@ function App() {
     },
     {
       id: 4,
-      img: "/image/frog/1.png",
+      img: function () {
+        return this.attract < 90 ? "/image/frog/1.png" : "/image/frog/2.png";
+      },
       name: "개굴이",
       sort: "개구리",
       height: 3,
       weight: 1,
       age: 1,
+      gold: 125,
+      category: 'pet',
       feature: "개구리 알 생성",
       attract: 60,
       affect: 0,
@@ -75,12 +107,16 @@ function App() {
     },
     {
       id: 5,
-      img: "/image/bat/1.png",
+      img: function () {
+        return this.attract < 90 ? "/image/bat/1.png" : "/image/bat/2.png";
+      },
       name: "Park쥐",
       sort: "박쥐",
       height: 7,
       weight: 3,
       age: 1,
+      gold: 90,
+      category: 'pet',
       feature: "구아노 생성",
       attract: 50,
       affect: 0,
@@ -88,12 +124,16 @@ function App() {
     },
     {
       id: 6,
-      img: "/image/goat.png",
+      img: function () {
+        return "/image/goat.png";
+      },
       name: "Goat",
       sort: "염소",
       height: 70,
       weight: 20,
       age: 1,
+      gold: 75,
+      category: 'pet',
       feature: "염소 털 생성",
       attract: 70,
       affect: 0,
@@ -101,12 +141,16 @@ function App() {
     },
     {
       id: 7,
-      img: "/image/snail.png",
+      img: function () {
+        return "/image/snail.png";
+      },
       name: "핑핑이",
       sort: "달팽이",
       height: 5,
       weight: 1,
       age: 1,
+      gold: 35,
+      category: 'pet',
       feature: "달팽이 크림 생성",
       attract: 50,
       affect: 0,
@@ -114,12 +158,16 @@ function App() {
     },
     {
       id: 8,
-      img: "/image/bee.png",
+      img: function () {
+        return "/image/bee.png";
+      },
       name: "B",
       sort: "꿀벌",
       height: 1,
       weight: 0.4,
       age: 1,
+      gold: 55,
+      category: 'pet',
       feature: "꿀 생성",
       attract: 50,
       affect: 0,
@@ -132,17 +180,18 @@ function App() {
 
   // 항목 추가
   const addItem = (item) => {
-    setList([...list, item]);
+    setpetList([...petlist, item]);
   };
 
   // 항목 삭제
   const removeItem = (itemId) => {
-    setList(list.filter((item) => item.id !== itemId));
+    setpetList(petlist.filter((item) => item.id !== itemId));
   };
   //====================== 마이룸 전용 변수 및 함수==========================
 
   //====================== 상점 전용 변수 및 함수==========================
   const [inventory, setInventory] = useState([]);
+  const [purchasedPets, setPurchasedPets] = useState([]); // 산 동물은 제외
   const [select, setSelect] = useState(null);
   const nextId = useRef(1);
 
@@ -162,6 +211,8 @@ function App() {
           ...ele,
           id: nextId.current,
         };
+        setMyPets((prevMyPets) => [...prevMyPets, ele.name]);
+        setPurchasedPets(prev => [...prev, ele.name]); // 구매한 동물의 이름 추가
         setInventory((inventory) => inventory.concat(nextObject));
         nextId.current += 1;
         setGold((Gold) => Gold - ele.gold);
@@ -193,35 +244,40 @@ function App() {
     localStorage.setItem("hasChosen", hasChosen);
   }, [hasChosen]);
 
-
   return (
     <Routes>
       <Route element={<Layout />}>
-        {
-          hasChosen
-          ? <Route path="/" element={<Navigate to="/myroom" />} />
-          : <Route
-              index
-              element={
-                <MainPage
+        {hasChosen ? (
+          <Route path="/" element={<Navigate to="/myroom" />} />
+        ) : (
+          <Route
+            index
+            element={
+              <MainPage
                 hasChosen={hasChosen}
                 setHasChosen={setHasChosen}
-                list={list}
+                petlist={petlist}
+                myPets={myPets}
                 addItem={addItem}
                 nextAnimalId={nextAnimalId}
               />
-              }
-            />
-        }
+            }
+          />
+        )}
         <Route
           path="/myroom"
           element={
             <MyRoom
               Gold={Gold}
-              list={list}
+              setGold={setGold}
+              petlist={petlist}
+              myPets={myPets}
               nextAnimalId={nextAnimalId}
               addItem={addItem}
               removeItem={removeItem}
+              inventory={inventory}
+              setInventory={setInventory}
+              select={select}
             />
           }
         />
@@ -230,7 +286,8 @@ function App() {
           element={
             <Store
               Gold={Gold}
-              list={list}
+              petlist={petlist}
+              purchasedPets={purchasedPets}
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}
@@ -241,7 +298,14 @@ function App() {
           }
         />
         <Route path="/game" element={<Game onIncrease={increaseValue} />} />
-        <Route path="/contest" element={<Contest list={list} />} />
+        <Route path="/contest" element={<Contest />} />
+        <Route
+          path="/contest/select"
+          element={
+            <SelectPage petlist={petlist} select={select} setSelect={setSelect} />
+          }
+        />
+        <Route path="/contest/result" element={<ResultPage />} />
       </Route>
     </Routes>
   );

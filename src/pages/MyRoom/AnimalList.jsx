@@ -10,9 +10,10 @@ const AnimalListDiv = styled.div`
   border-radius: 50px;
 
   .point {
-    margin: 0 0 2% 3%;
+    margin: 6% 0 2% 3%;
     h1 {
       font-size: 36px;
+      font-weight: 900;
     }
   }
 `;
@@ -58,16 +59,19 @@ const ListDiv = styled.div`
   }
 `;
 
-const AnimalList = ({ Gold, handleToggle, list }) => {
+const AnimalList = ({ Gold, handleToggle, petlist, myPets }) => {
+  const filteredList = petlist.filter(animal => myPets.includes(animal.name));
+
   return (
     <AnimalListDiv>
       <ListDiv>
-        {list.map((animal) => (
+        {filteredList.map((animal) => (
           <div className="item" onClick={() => handleToggle(animal.id)}>
             <h3>
               <img
                 style={{ width: "70%" }}
-                src={process.env.PUBLIC_URL + animal.img}
+                src={process.env.PUBLIC_URL + animal.img()}
+                alt={animal.name}
               />
             </h3>
             <p>{animal.name}</p>

@@ -17,8 +17,6 @@ const Game = ({onIncrease}) => {
     codeUrl: "build/Adv_unity.wasm",
   });
 
-  // +5는 테스트 코드
-  // 아직 Game/index.jsx가 Store/index.jsx의 변수 증가를 할 줄 모름
   const setScoreUp = useCallback((curScore) => {
     onIncrease(curScore);
   }, [onIncrease]);
