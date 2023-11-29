@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const ContestDiv = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "image/contest.png"});
+  background-image: url(${process.env.PUBLIC_URL + "/image/contest.png"});
 
   .contestTitle {
     h1 {
@@ -38,13 +38,17 @@ const ContestDiv = styled.div`
     cursor: pointer;
     color: #e5e5e5;
 
+    p {
+      margin: 5% 0;
+    }
+
     &:hover {
       opacity: 0.8;
     }
   }
 `;
 
-const Contest = ({ list }) => {
+const Contest = () => {
   const navigate = useNavigate();
 
   return (
@@ -59,7 +63,7 @@ const Contest = ({ list }) => {
       <div
         className="startBtn"
         onClick={() => {
-          navigate("/myroom");
+          navigate("./select");
         }}
       >
         <p>대회 시작</p>
