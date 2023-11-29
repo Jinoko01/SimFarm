@@ -16,6 +16,7 @@ function App() {
   );
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
+  const [myPets, setMyPets] = useState([]); // 내가 갖고있는 동물
   const increaseValue = (increment) => {
     setGold(Gold + increment);
   };
@@ -23,7 +24,7 @@ function App() {
 
   //====================== 마이룸 전용 변수 및 함수==========================
 
-  const [list, setList] = useState([
+  const [petlist, setpetList] = useState([
     {
       id: 1,
       img: function () {
@@ -38,6 +39,8 @@ function App() {
       height: 0.25,
       weight: 0.1,
       age: 1,
+      gold: 5,
+      category: 'pet',
       feature: "고약한 악취",
       attract: 50,
       affect: 0,
@@ -57,6 +60,8 @@ function App() {
       height: 20,
       weight: 7,
       age: 1,
+      gold: 5,
+      category: 'pet',
       feature: "하늘을 나는 동물",
       attract: 50,
       affect: 0,
@@ -76,6 +81,8 @@ function App() {
       height: 5,
       weight: 3,
       age: 1,
+      gold: 5,
+      category: 'pet',
       feature: "미끌거림",
       attract: 50,
       affect: 0,
@@ -91,6 +98,8 @@ function App() {
       height: 3,
       weight: 1,
       age: 1,
+      gold: 125,
+      category: 'pet',
       feature: "개구리 알 생성",
       attract: 60,
       affect: 0,
@@ -106,6 +115,8 @@ function App() {
       height: 7,
       weight: 3,
       age: 1,
+      gold: 90,
+      category: 'pet',
       feature: "구아노 생성",
       attract: 50,
       affect: 0,
@@ -121,6 +132,8 @@ function App() {
       height: 70,
       weight: 20,
       age: 1,
+      gold: 75,
+      category: 'pet',
       feature: "염소 털 생성",
       attract: 70,
       affect: 0,
@@ -136,6 +149,8 @@ function App() {
       height: 5,
       weight: 1,
       age: 1,
+      gold: 35,
+      category: 'pet',
       feature: "달팽이 크림 생성",
       attract: 50,
       affect: 0,
@@ -151,6 +166,8 @@ function App() {
       height: 1,
       weight: 0.4,
       age: 1,
+      gold: 55,
+      category: 'pet',
       feature: "꿀 생성",
       attract: 50,
       affect: 0,
@@ -163,17 +180,18 @@ function App() {
 
   // 항목 추가
   const addItem = (item) => {
-    setList([...list, item]);
+    setpetList([...petlist, item]);
   };
 
   // 항목 삭제
   const removeItem = (itemId) => {
-    setList(list.filter((item) => item.id !== itemId));
+    setpetList(petlist.filter((item) => item.id !== itemId));
   };
   //====================== 마이룸 전용 변수 및 함수==========================
 
   //====================== 상점 전용 변수 및 함수==========================
   const [inventory, setInventory] = useState([]);
+  const [purchasedPets, setPurchasedPets] = useState([]); // 산 동물은 제외
   const [select, setSelect] = useState(null);
   const nextId = useRef(1);
 
@@ -193,6 +211,8 @@ function App() {
           ...ele,
           id: nextId.current,
         };
+        setMyPets((prevMyPets) => [...prevMyPets, ele.name]);
+        setPurchasedPets(prev => [...prev, ele.name]); // 구매한 동물의 이름 추가
         setInventory((inventory) => inventory.concat(nextObject));
         nextId.current += 1;
         setGold((Gold) => Gold - ele.gold);
@@ -236,7 +256,8 @@ function App() {
               <MainPage
                 hasChosen={hasChosen}
                 setHasChosen={setHasChosen}
-                list={list}
+                petlist={petlist}
+                myPets={myPets}
                 addItem={addItem}
                 nextAnimalId={nextAnimalId}
               />
@@ -249,7 +270,8 @@ function App() {
             <MyRoom
               Gold={Gold}
               setGold={setGold}
-              list={list}
+              petlist={petlist}
+              myPets={myPets}
               nextAnimalId={nextAnimalId}
               addItem={addItem}
               removeItem={removeItem}
@@ -264,7 +286,8 @@ function App() {
           element={
             <Store
               Gold={Gold}
-              list={list}
+              petlist={petlist}
+              purchasedPets={purchasedPets}
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}
@@ -279,7 +302,7 @@ function App() {
         <Route
           path="/contest/select"
           element={
-            <SelectPage list={list} select={select} setSelect={setSelect} />
+            <SelectPage petlist={petlist} select={select} setSelect={setSelect} />
           }
         />
         <Route path="/contest/result" element={<ResultPage />} />

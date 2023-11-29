@@ -24,7 +24,8 @@ const ComponentsDiv = styled.div`
 
 const Store = ({
   Gold,
-  list,
+  petlist,
+  purchasedPets,
   handlePurchase,
   handleSales,
   inventory,
@@ -48,8 +49,9 @@ const Store = ({
         <Category handleCategory={handleCategory} category={category} />
         <StoreList
           Gold={Gold}
-          petlist={list}
+          petlist={petlist}
           category={category}
+          purchasedPets={purchasedPets}
           handlePurchase={handlePurchase}
           handleSales={handleSales}
           inventory={inventory}

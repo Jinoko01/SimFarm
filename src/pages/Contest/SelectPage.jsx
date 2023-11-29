@@ -90,7 +90,7 @@ const ContestDiv = styled.div`
   }
 `;
 
-const SelectPage = ({ list, select, setSelect }) => {
+const SelectPage = ({ petlist, select, setSelect }) => {
   const navigate = useNavigate();
 
   return (
@@ -101,7 +101,7 @@ const SelectPage = ({ list, select, setSelect }) => {
           <h1>동물을 선택하시오</h1>
         </div>
         <div className="list">
-          {list.map((animal) => (
+          {petlist.map((animal) => (
             <div
               className={`item ${select === animal ? "select" : ""}`}
               onClick={() => setSelect(animal)}
