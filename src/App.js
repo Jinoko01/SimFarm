@@ -6,6 +6,8 @@ import Store from "./pages/Store";
 import Game from "./pages/Game";
 import Contest from "./pages/Contest";
 import Layout from "./Layout";
+import SelectPage from "./pages/Contest/SelectPage";
+import ResultPage from "./pages/Contest/ResultPage";
 
 function App() {
   // localStorage에서 hasChosen 값을 읽어와서 초기 상태를 설정
@@ -273,7 +275,14 @@ function App() {
           }
         />
         <Route path="/game" element={<Game onIncrease={increaseValue} />} />
-        <Route path="/contest" element={<Contest list={list} />} />
+        <Route path="/contest" element={<Contest />} />
+        <Route
+          path="/contest/select"
+          element={
+            <SelectPage list={list} select={select} setSelect={setSelect} />
+          }
+        />
+        <Route path="/contest/result" element={<ResultPage />} />
       </Route>
     </Routes>
   );
