@@ -8,6 +8,7 @@ const CareModal = ({ show, hide, object, Gold, setGold }) => {
       return;
     }
     setGold((gold) => gold - 30);
+    object.attract += 10;
     object.affect += 10;
     hide();
   };
