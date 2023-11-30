@@ -181,6 +181,7 @@ function App() {
   // 항목 추가
   const addItem = (item) => {
     setpetList([...petlist, item]);
+    setMyPets(item.name); // 메인 페이지 -> 마이룸에도 추가
   };
 
   // 항목 삭제
@@ -240,6 +241,7 @@ function App() {
   //====================== 상점 전용 변수 및 함수==========================
 
   //====================== 콘테스트 전용 변수 및 함수==========================
+  // 전체 펫 목록 중 내가 갖고 있는 펫만
   const ownedPetsList = petlist.filter((pet) => myPets.includes(pet.name));
   //====================== 콘테스트 전용 변수 및 함수==========================
 
@@ -261,7 +263,6 @@ function App() {
                 hasChosen={hasChosen}
                 setHasChosen={setHasChosen}
                 petlist={petlist}
-                myPets={myPets}
                 addItem={addItem}
                 nextAnimalId={nextAnimalId}
               />

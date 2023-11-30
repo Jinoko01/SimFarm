@@ -91,7 +91,7 @@ const MainPageDiv = styled.div`
   }
 `;
 
-const MainPage = ({ hasChosen, setHasChosen, list, addItem, nextAnimalId }) => {
+const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimalId }) => {
   const [selectedPet, setSelectedPet] = useState(null);
   const navigateTo = useNavigate();
   console.log(hasChosen);
@@ -117,6 +117,7 @@ const MainPage = ({ hasChosen, setHasChosen, list, addItem, nextAnimalId }) => {
         height: 1,
         weight: 0.4,
         age: 1,
+        category: "main",
         feature: selectedPet.feature,
         attract: 50,
         affect: 0,
