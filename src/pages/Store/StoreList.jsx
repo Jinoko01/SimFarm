@@ -228,6 +228,7 @@ const StoreList = ({
     ? petlist
         .filter(ele => ![1, 2, 3].includes(ele.id)) // id가 1, 2, 3인 동물 제외
         .filter(ele => !purchasedPets.includes(ele.name)) // 구매한 동물 제외
+        .filter(pet => pet.category !== 'main') // 메인 페이지에서 선택한 동물 제외
     : [];
 
     return (
