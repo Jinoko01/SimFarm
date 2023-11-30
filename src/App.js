@@ -239,6 +239,10 @@ function App() {
   );
   //====================== 상점 전용 변수 및 함수==========================
 
+  //====================== 콘테스트 전용 변수 및 함수==========================
+  const ownedPetsList = petlist.filter(pet => myPets.includes(pet.name));
+  //====================== 콘테스트 전용 변수 및 함수==========================
+
   useEffect(() => {
     // hasChosen 상태가 변경될 때 localStorage 값을 업데이트
     localStorage.setItem("hasChosen", hasChosen);
@@ -302,7 +306,10 @@ function App() {
         <Route
           path="/contest/select"
           element={
-            <SelectPage petlist={petlist} select={select} setSelect={setSelect} />
+            <SelectPage 
+            petlist={ownedPetsList} 
+            select={select} 
+            setSelect={setSelect} />
           }
         />
         <Route path="/contest/result" element={<ResultPage />} />
