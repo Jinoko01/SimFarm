@@ -250,7 +250,10 @@ const StoreList = ({
                 </div>
               ))
           : category === "sales" && inventory
-          ? inventory.map((ele) => (
+          ? 
+          inventory
+          .filter(ele => !"pet".includes(ele.category))
+          .map((ele) => (
               <div key={ele.id}>
                 <ListObject
                   className={select === ele ? "select" : ""}
