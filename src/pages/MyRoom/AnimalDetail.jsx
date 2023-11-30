@@ -83,7 +83,7 @@ const NoneDiv = styled.div`
 `;
 
 const AnimalDetail = ({
-  list,
+  petlist,
   id,
   toggle,
   inventory,
@@ -103,12 +103,12 @@ const AnimalDetail = ({
   const handleCareShow = () => setCareShow(true);
 
   const getObject = useCallback(() => {
-    for (let key in list) {
-      if (list[key].id === id) {
-        return list[key];
+    for (let key in petlist) {
+      if (petlist[key].id === id) {
+        return petlist[key];
       }
     }
-  }, [list, id]);
+  }, [petlist, id]);
 
   const object = useMemo(() => getObject(), [getObject]);
   if (toggle) {

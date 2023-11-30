@@ -211,54 +211,74 @@ const Point = styled.div`
   font-weight: 800;
 `;
 
+
 const StoreList = ({
   Gold,
+  petlist,
   category,
+  purchasedPets,
   handlePurchase,
   handleSales,
   inventory,
   select,
   handleSelect,
 }) => {
-  return (
-    <ListDiv>
-      <div className="element">
-        {list.map((ele) =>
-          category === ele.category ? (
-            <div>
-              <ListObject
-                className={select === ele ? "select" : ""}
-                onClick={() => handleSelect(ele)}
-              >
-                <h2>
-                  <img src={process.env.PUBLIC_URL + ele.img} alt={ele.name} />
-                </h2>
-                <p>{ele.name}</p>
-              </ListObject>
-              <Point>{ele.gold} P</Point>
-            </div>
-          ) : null
-        )}
-        {category === "sales"
-          ? inventory &&
-            inventory.map((ele) => (
+  // 필터링된 동물 목록을 생성
+  const filteredPetList = category === "pet" && petlist
+    ? petlist
+        .filter(ele => ![1, 2, 3].includes(ele.id)) // id가 1, 2, 3인 동물 제외
+        .filter(ele => !purchasedPets.includes(ele.name)) // 구매한 동물 제외
+    : [];
+
+    return (
+      <ListDiv>
+        <div className="element">
+          {category === "pet"
+            ? filteredPetList.map((ele) => (
+                <div key={ele.id}>
+                  <ListObject
+                    className={select === ele ? "select" : ""}
+                    onClick={() => handleSelect(ele)}
+                  >
+                    <h2>
+                      <img src={process.env.PUBLIC_URL + ele.img()} alt={ele.name} />
+                    </h2>
+                    <p>{ele.name}</p>
+                  </ListObject>
+                  <Point>{ele.gold} P</Point>
+                </div>
+              ))
+          : category === "sales" && inventory
+          ? inventory.map((ele) => (
               <div key={ele.id}>
                 <ListObject
                   className={select === ele ? "select" : ""}
                   onClick={() => handleSelect(ele)}
                 >
                   <h2>
-                    <img
-                      src={process.env.PUBLIC_URL + ele.img}
-                      alt={ele.name}
-                    />
+                    <img src={process.env.PUBLIC_URL + ele.img} alt={ele.name} />
                   </h2>
                   <p>{ele.name}</p>
                 </ListObject>
                 <Point>{ele.gold} P</Point>
               </div>
             ))
-          : null}
+          : list
+              .filter(ele => category === ele.category)
+              .map((ele) => (
+                <div key={ele.id}>
+                  <ListObject
+                    className={select === ele ? "select" : ""}
+                    onClick={() => handleSelect(ele)}
+                  >
+                    <h2>
+                      <img src={process.env.PUBLIC_URL + ele.img} alt={ele.name} />
+                    </h2>
+                    <p>{ele.name}</p>
+                  </ListObject>
+                  <Point>{ele.gold} P</Point>
+                </div>
+              ))}
       </div>
       <div className="buy">
         <h2 className="point">POINT:{Gold}</h2>
@@ -277,3 +297,4 @@ const StoreList = ({
 };
 
 export default StoreList;
+
