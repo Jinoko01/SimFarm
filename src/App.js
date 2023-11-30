@@ -180,8 +180,7 @@ function App() {
 
   // 항목 추가
   const addItem = (item) => {
-    setpetList([...petlist, item]);
-    setMyPets(item.name); // 메인 페이지 -> 마이룸에도 추가
+    setMyPets([item.name]); // 메인 페이지 -> 마이룸에도 추가
   };
 
   // 항목 삭제
@@ -263,6 +262,7 @@ function App() {
                 hasChosen={hasChosen}
                 setHasChosen={setHasChosen}
                 petlist={petlist}
+                setMyPets={setMyPets}
                 addItem={addItem}
                 nextAnimalId={nextAnimalId}
               />
@@ -292,6 +292,7 @@ function App() {
             <Store
               Gold={Gold}
               petlist={petlist}
+              myPets={myPets}
               purchasedPets={purchasedPets}
               handlePurchase={handlePurchase}
               handleSales={handleSales}

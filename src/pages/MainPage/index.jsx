@@ -7,24 +7,33 @@ import styled from "styled-components";
 const pet = [
   {
     id: 1,
+    name: "빗흘",
     img: process.env.PUBLIC_URL + "/image/beetle/1.png",
     sort: "딱정벌레",
     eng: "beetle",
     feature: "고약한 악취",
+    height: 0.25,
+    weight: 0.1,
   },
   {
     id: 2,
+    name: "빼앰",
     img: process.env.PUBLIC_URL + "/image/snake/1.png",
     sort: "뱀",
     eng: "snake",
     feature: "미끌거림",
+    height: 5,
+    weight: 3,
   },
   {
     id: 3,
+    name: "쇄",
     img: process.env.PUBLIC_URL + "/image/bird/1.png",
     sort: "새",
     eng: "bird",
     feature: "하늘을 나는 동물",
+    height: 20,
+    weight: 7,
   },
 ];
 
@@ -88,16 +97,27 @@ const MainPageDiv = styled.div`
     &:hover {
       opacity: 0.8;
     }
+
+    p {
+      margin: 5% auto;
+    }
   }
 `;
 
-const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimalId }) => {
+const MainPage = ({
+  hasChosen,
+  setHasChosen,
+  petlist,
+  setMyPets,
+  addItem,
+  nextAnimalId,
+}) => {
   const [selectedPet, setSelectedPet] = useState(null);
   const navigateTo = useNavigate();
   console.log(hasChosen);
 
-  const handlePetClick = (petName, petImg, feature) => {
-    setSelectedPet({ petName, petImg, feature });
+  const handlePetClick = (name, petName, petImg, feature, height, weight) => {
+    setSelectedPet({ name, petName, petImg, feature, height, weight });
   };
 
   const handleNavigate = () => {
@@ -112,10 +132,10 @@ const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimal
             ? `/image/${selectedPet.petImg}/2.png`
             : `/image/${selectedPet.petImg}/3.png`;
         },
-        name: selectedPet.petName,
+        name: selectedPet.name,
         sort: selectedPet.petName,
-        height: 1,
-        weight: 0.4,
+        height: selectedPet.height,
+        weight: selectedPet.weight,
         age: 1,
         category: "main",
         feature: selectedPet.feature,
@@ -147,7 +167,14 @@ const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimal
                 src={animal.img}
                 alt={animal.sort}
                 onClick={() =>
-                  handlePetClick(animal.sort, animal.eng, animal.feature)
+                  handlePetClick(
+                    animal.name,
+                    animal.sort,
+                    animal.eng,
+                    animal.feature,
+                    animal.height,
+                    animal.weight
+                  )
                 }
                 style={{
                   border:
@@ -156,7 +183,7 @@ const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimal
                       : "none",
                 }}
               />
-              <PetName>{animal.eng}</PetName>
+              <PetName>{animal.name}</PetName>
             </div>
           ))}
         </div>

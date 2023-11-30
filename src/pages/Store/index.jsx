@@ -25,6 +25,7 @@ const ComponentsDiv = styled.div`
 const Store = ({
   Gold,
   petlist,
+  myPets,
   salesList,
   purchasedPets,
   handlePurchase,
@@ -51,6 +52,7 @@ const Store = ({
         <StoreList
           Gold={Gold}
           petlist={petlist}
+          myPets={myPets}
           category={category}
           salesList={salesList}
           purchasedPets={purchasedPets}

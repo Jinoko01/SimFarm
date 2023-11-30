@@ -36,6 +36,7 @@ const DessertModal = ({ show, hide, object, inventory, setInventory }) => {
       return;
     }
     object.affect += click.grow;
+    object.attract += click.attract;
     setInventory((inventory) =>
       inventory.filter((element) => element.id !== click.id)
     );
