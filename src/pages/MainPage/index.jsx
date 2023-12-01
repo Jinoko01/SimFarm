@@ -9,31 +9,16 @@ const pet = [
     id: 1,
     name: "빗흘",
     img: process.env.PUBLIC_URL + "/image/beetle/1.png",
-    sort: "딱정벌레",
-    eng: "beetle",
-    feature: "고약한 악취",
-    height: 0.25,
-    weight: 0.1,
   },
   {
     id: 2,
     name: "빼앰",
     img: process.env.PUBLIC_URL + "/image/snake/1.png",
-    sort: "뱀",
-    eng: "snake",
-    feature: "미끌거림",
-    height: 5,
-    weight: 3,
   },
   {
     id: 3,
     name: "쇄",
     img: process.env.PUBLIC_URL + "/image/bird/1.png",
-    sort: "새",
-    eng: "bird",
-    feature: "하늘을 나는 동물",
-    height: 20,
-    weight: 7,
   },
 ];
 
@@ -104,45 +89,19 @@ const MainPageDiv = styled.div`
   }
 `;
 
-const MainPage = ({
-  hasChosen,
-  setHasChosen,
-  petlist,
-  setMyPets,
-  addItem,
-  nextAnimalId,
-}) => {
+const MainPage = ({ hasChosen, setHasChosen, setMyPets, nextAnimalId }) => {
   const [selectedPet, setSelectedPet] = useState(null);
   const navigateTo = useNavigate();
   console.log(hasChosen);
 
-  const handlePetClick = (name, petName, petImg, feature, height, weight) => {
-    setSelectedPet({ name, petName, petImg, feature, height, weight });
+  const handlePetClick = (name, petImg) => {
+    setSelectedPet({ name, petImg });
   };
 
   const handleNavigate = () => {
     if (selectedPet && !hasChosen) {
       setHasChosen(true);
-      addItem({
-        id: nextAnimalId.current,
-        img: function () {
-          return this.attract < 80
-            ? `/image/${selectedPet.petImg}/1.png`
-            : this.attract < 100
-            ? `/image/${selectedPet.petImg}/2.png`
-            : `/image/${selectedPet.petImg}/3.png`;
-        },
-        name: selectedPet.name,
-        sort: selectedPet.petName,
-        height: selectedPet.height,
-        weight: selectedPet.weight,
-        age: 1,
-        category: "main",
-        feature: selectedPet.feature,
-        attract: 50,
-        affect: 0,
-        accessory: "",
-      });
+      setMyPets((prevMyPets) => [...prevMyPets, selectedPet.name]);
       navigateTo("/myroom");
       nextAnimalId.current += 1;
     }
@@ -165,20 +124,11 @@ const MainPage = ({
             <div>
               <PetImage
                 src={animal.img}
-                alt={animal.sort}
-                onClick={() =>
-                  handlePetClick(
-                    animal.name,
-                    animal.sort,
-                    animal.eng,
-                    animal.feature,
-                    animal.height,
-                    animal.weight
-                  )
-                }
+                alt={animal.name}
+                onClick={() => handlePetClick(animal.name)}
                 style={{
                   border:
-                    selectedPet && selectedPet.petName === animal.sort
+                    selectedPet && selectedPet.name === animal.name
                       ? "2px solid blue"
                       : "none",
                 }}

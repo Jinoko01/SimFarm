@@ -9,7 +9,7 @@ const MyRoomDiv = styled.div`
   display: flex;
 `;
 
-const MyRoom = ({ Gold, setGold,petlist, myPets, inventory, setInventory, select }) => {
+const MyRoom = ({ Gold, setGold, petlist, inventory, setInventory }) => {
   const [id, setId] = useState(null);
   const [toggle, setToggle] = useState(false);
 
@@ -34,17 +34,10 @@ const MyRoom = ({ Gold, setGold,petlist, myPets, inventory, setInventory, select
         toggle={toggle}
         inventory={inventory}
         setInventory={setInventory}
-        select={select}
         Gold={Gold}
         setGold={setGold}
       />
-      <AnimalList
-        petlist={petlist}
-        Gold={Gold}
-        myPets={myPets}
-        handleToggle={handleToggle}
-        select={select}
-      />
+      <AnimalList petlist={petlist} Gold={Gold} handleToggle={handleToggle} />
     </MyRoomDiv>
   );
 };

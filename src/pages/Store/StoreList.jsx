@@ -225,7 +225,6 @@ const StoreList = ({
   petlist,
   myPets,
   category,
-  purchasedPets,
   handlePurchase,
   handleSales,
   inventory,
@@ -235,10 +234,7 @@ const StoreList = ({
   // 필터링된 동물 목록을 생성
   const filteredPetList =
     category === "pet" && petlist
-      ? petlist
-          .filter((ele) => ![...myPets].includes(ele.name)) // id가 1, 2, 3인 동물 제외
-          .filter((ele) => !purchasedPets.includes(ele.name)) // 구매한 동물 제외
-          .filter((pet) => pet.category !== "main") // 메인 페이지에서 선택한 동물 제외
+      ? petlist.filter((ele) => ![...myPets].includes(ele.name)) // 가지고 있는 동물 제외
       : [];
 
   return (

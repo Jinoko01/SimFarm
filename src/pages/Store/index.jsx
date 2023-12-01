@@ -26,7 +26,6 @@ const Store = ({
   Gold,
   petlist,
   myPets,
-  salesList,
   purchasedPets,
   handlePurchase,
   handleSales,
@@ -54,8 +53,6 @@ const Store = ({
           petlist={petlist}
           myPets={myPets}
           category={category}
-          salesList={salesList}
-          purchasedPets={purchasedPets}
           handlePurchase={handlePurchase}
           handleSales={handleSales}
           inventory={inventory}

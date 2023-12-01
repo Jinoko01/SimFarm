@@ -24,7 +24,7 @@ function App() {
 
   //====================== 마이룸 전용 변수 및 함수==========================
 
-  const [petlist, setpetList] = useState([
+  const [petlist] = useState([
     {
       id: 1,
       img: function () {
@@ -176,22 +176,11 @@ function App() {
   ]);
 
   // 동물 리스트 다음 ID
-  const nextAnimalId = useRef(9);
-
-  // 항목 추가
-  const addItem = (item) => {
-    setMyPets([item.name]); // 메인 페이지 -> 마이룸에도 추가
-  };
-
-  // 항목 삭제
-  const removeItem = (itemId) => {
-    setpetList(petlist.filter((item) => item.id !== itemId));
-  };
+  const nextAnimalId = useRef(1);
   //====================== 마이룸 전용 변수 및 함수==========================
 
   //====================== 상점 전용 변수 및 함수==========================
   const [inventory, setInventory] = useState([]);
-  const [purchasedPets, setPurchasedPets] = useState([]); // 산 동물은 제외
   const [select, setSelect] = useState(null);
   const nextId = useRef(1);
 
@@ -212,7 +201,6 @@ function App() {
           id: nextId.current,
         };
         setMyPets((prevMyPets) => [...prevMyPets, ele.name]);
-        setPurchasedPets((prev) => [...prev, ele.name]); // 구매한 동물의 이름 추가
         setInventory((inventory) => inventory.concat(nextObject));
         nextId.current += 1;
         setGold((Gold) => Gold - ele.gold);
@@ -261,9 +249,7 @@ function App() {
               <MainPage
                 hasChosen={hasChosen}
                 setHasChosen={setHasChosen}
-                petlist={petlist}
                 setMyPets={setMyPets}
-                addItem={addItem}
                 nextAnimalId={nextAnimalId}
               />
             }
@@ -275,14 +261,9 @@ function App() {
             <MyRoom
               Gold={Gold}
               setGold={setGold}
-              petlist={petlist}
-              myPets={myPets}
-              nextAnimalId={nextAnimalId}
-              addItem={addItem}
-              removeItem={removeItem}
+              petlist={ownedPetsList}
               inventory={inventory}
               setInventory={setInventory}
-              select={select}
             />
           }
         />
@@ -293,7 +274,6 @@ function App() {
               Gold={Gold}
               petlist={petlist}
               myPets={myPets}
-              purchasedPets={purchasedPets}
               handlePurchase={handlePurchase}
               handleSales={handleSales}
               inventory={inventory}
