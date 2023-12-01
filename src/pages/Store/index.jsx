@@ -26,7 +26,6 @@ const Store = ({
   Gold,
   petlist,
   myPets,
-  purchasedPets,
   handlePurchase,
   handleSales,
   inventory,
