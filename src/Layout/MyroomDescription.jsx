@@ -19,7 +19,7 @@ const MyroomDescription = () => {
     <DescriptionDiv>
       <ImageDiv>
         <img
-          src={`${process.env.PUBLIC_URL}/image/myroomDescription.png`}
+          src={`${process.env.PUBLIC_URL}/image/Description/myroomDescription.png`}
           alt="myroomDescription"
           style={{ width: "100%" }}
         />
@@ -32,7 +32,7 @@ const MyroomDescription = () => {
         오른쪽에 있는 동물리스트에서 하나의 동물을 클릭할 시 왼쪽에 동물에 관한
         상세정보가 나오게 됩니다.
       </p>
-      <p>
+      <p style={{ marginTop: "3%" }}>
         <b>먹이</b>버튼을 통해 먹이를 줄 수 있습니다.
       </p>
       <p>

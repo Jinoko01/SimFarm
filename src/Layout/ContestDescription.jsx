@@ -19,7 +19,7 @@ const ContestDescription = () => {
     <DescriptionDiv>
       <ImageDiv>
         <img
-          src={`${process.env.PUBLIC_URL}/image/contestDescription.png`}
+          src={`${process.env.PUBLIC_URL}/image/Description/contestDescription.png`}
           alt="myroomDescription"
           style={{ width: "100%" }}
         />

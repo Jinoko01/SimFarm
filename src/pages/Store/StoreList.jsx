@@ -44,7 +44,7 @@ const list = [
     gold: 15,
     img: "/image/PNG_food_icons/eggs.png",
     grow: 3,
-    attract: 1.5,
+    attract: 2.5,
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ const list = [
     gold: 18,
     img: "/image/PNG_food_icons/ice_cream.png",
     grow: 3.6,
-    attract: 2,
+    attract: 3.4,
   },
   {
     id: 7,
@@ -62,7 +62,7 @@ const list = [
     gold: 20,
     img: "/image/PNG_food_icons/jelly_bear.png",
     grow: 4,
-    attract: 2.2,
+    attract: 4.2,
   },
   {
     id: 8,
@@ -71,7 +71,7 @@ const list = [
     gold: 25,
     img: "/image/PNG_food_icons/pie.png",
     grow: 5,
-    attract: 3,
+    attract: 4.8,
   },
   {
     id: 9,

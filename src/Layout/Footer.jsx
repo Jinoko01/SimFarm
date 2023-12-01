@@ -3,6 +3,7 @@ import "../style/GlobalCSS.scss";
 import { useState } from "react";
 import MyroomDescription from "./MyroomDescription";
 import StoreDescription from "./StoreDescription";
+import GameDescription from "./GameDescription";
 import ContestDescription from "./ContestDescription";
 
 const FooterDiv = styled.div`
@@ -60,7 +61,7 @@ const Footer = () => {
         </CategoryBtn>
         {category === "myroom" ? <MyroomDescription /> : null}
         {category === "store" ? <StoreDescription /> : null}
-        {category === "game" ? <MyroomDescription /> : null}
+        {category === "game" ? <GameDescription /> : null}
         {category === "contest" ? <ContestDescription /> : null}
       </ContentDiv>
     </FooterDiv>

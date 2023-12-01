@@ -19,7 +19,7 @@ const StoreDescription = () => {
     <DescriptionDiv>
       <ImageDiv>
         <img
-          src={`${process.env.PUBLIC_URL}/image/storeDescription.png`}
+          src={`${process.env.PUBLIC_URL}/image/Description/storeDescription.png`}
           alt="myroomDescription"
           style={{ width: "100%" }}
         />
@@ -29,7 +29,7 @@ const StoreDescription = () => {
         상점 페이지에서 동물을 입양하거나 동물에게 이로운 효과를 주는 아이템을
         구매하거나 판매할 수 있습니다.
       </p>
-      <p>
+      <p style={{ marginTop: "3%" }}>
         <b>먹이</b>는 동물의 매력과 애정도를 소량 상승시킵니다.
       </p>
       <p>
