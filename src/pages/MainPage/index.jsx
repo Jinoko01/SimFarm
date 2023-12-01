@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../../style/GlobalCSS.scss";
@@ -94,18 +94,25 @@ const MainPage = ({ hasChosen, setHasChosen, setMyPets, nextAnimalId }) => {
   const navigateTo = useNavigate();
   console.log(hasChosen);
 
-  const handlePetClick = (name, petImg) => {
+  const handlePetClick = useCallback((name, petImg) => {
     setSelectedPet({ name, petImg });
-  };
+  }, []);
 
-  const handleNavigate = () => {
+  const handleNavigate = useCallback(() => {
     if (selectedPet && !hasChosen) {
       setHasChosen(true);
       setMyPets((prevMyPets) => [...prevMyPets, selectedPet.name]);
       navigateTo("/myroom");
       nextAnimalId.current += 1;
     }
-  };
+  }, [
+    selectedPet,
+    hasChosen,
+    navigateTo,
+    nextAnimalId,
+    setHasChosen,
+    setMyPets,
+  ]);
 
   if (hasChosen) {
     return <Navigate to="/myroom" />;
