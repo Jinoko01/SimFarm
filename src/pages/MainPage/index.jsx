@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../../style/GlobalCSS.scss";
@@ -7,24 +7,18 @@ import styled from "styled-components";
 const pet = [
   {
     id: 1,
+    name: "빗흘",
     img: process.env.PUBLIC_URL + "/image/beetle/1.png",
-    sort: "딱정벌레",
-    eng: "beetle",
-    feature: "고약한 악취",
   },
   {
     id: 2,
+    name: "빼앰",
     img: process.env.PUBLIC_URL + "/image/snake/1.png",
-    sort: "뱀",
-    eng: "snake",
-    feature: "미끌거림",
   },
   {
     id: 3,
+    name: "쇄",
     img: process.env.PUBLIC_URL + "/image/bird/1.png",
-    sort: "새",
-    eng: "bird",
-    feature: "하늘을 나는 동물",
   },
 ];
 
@@ -88,45 +82,37 @@ const MainPageDiv = styled.div`
     &:hover {
       opacity: 0.8;
     }
+
+    p {
+      margin: 5% auto;
+    }
   }
 `;
 
-const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimalId }) => {
+const MainPage = ({ hasChosen, setHasChosen, setMyPets, nextAnimalId }) => {
   const [selectedPet, setSelectedPet] = useState(null);
   const navigateTo = useNavigate();
   console.log(hasChosen);
 
-  const handlePetClick = (petName, petImg, feature) => {
-    setSelectedPet({ petName, petImg, feature });
-  };
+  const handlePetClick = useCallback((name, petImg) => {
+    setSelectedPet({ name, petImg });
+  }, []);
 
-  const handleNavigate = () => {
+  const handleNavigate = useCallback(() => {
     if (selectedPet && !hasChosen) {
       setHasChosen(true);
-      addItem({
-        id: nextAnimalId.current,
-        img: function () {
-          return this.attract < 80
-            ? `/image/${selectedPet.petImg}/1.png`
-            : this.attract < 100
-            ? `/image/${selectedPet.petImg}/2.png`
-            : `/image/${selectedPet.petImg}/3.png`;
-        },
-        name: selectedPet.petName,
-        sort: selectedPet.petName,
-        height: 1,
-        weight: 0.4,
-        age: 1,
-        category: "main",
-        feature: selectedPet.feature,
-        attract: 50,
-        affect: 0,
-        accessory: "",
-      });
+      setMyPets((prevMyPets) => [...prevMyPets, selectedPet.name]);
       navigateTo("/myroom");
       nextAnimalId.current += 1;
     }
-  };
+  }, [
+    selectedPet,
+    hasChosen,
+    navigateTo,
+    nextAnimalId,
+    setHasChosen,
+    setMyPets,
+  ]);
 
   if (hasChosen) {
     return <Navigate to="/myroom" />;
@@ -145,18 +131,16 @@ const MainPage = ({ hasChosen, setHasChosen, petlist, myPets,addItem, nextAnimal
             <div>
               <PetImage
                 src={animal.img}
-                alt={animal.sort}
-                onClick={() =>
-                  handlePetClick(animal.sort, animal.eng, animal.feature)
-                }
+                alt={animal.name}
+                onClick={() => handlePetClick(animal.name)}
                 style={{
                   border:
-                    selectedPet && selectedPet.petName === animal.sort
+                    selectedPet && selectedPet.name === animal.name
                       ? "2px solid blue"
                       : "none",
                 }}
               />
-              <PetName>{animal.eng}</PetName>
+              <PetName>{animal.name}</PetName>
             </div>
           ))}
         </div>

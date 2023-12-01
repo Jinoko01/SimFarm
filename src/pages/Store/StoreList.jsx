@@ -7,7 +7,8 @@ const list = [
     category: "dessert",
     gold: 2,
     img: "/image/PNG_food_icons/alga.png",
-    grow: 2,
+    grow: 0.5,
+    attract: 0.2,
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ const list = [
     category: "dessert",
     gold: 5,
     img: "/image/PNG_food_icons/anchovies.png",
-    grow: 6,
+    grow: 1,
+    attract: 0.5,
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ const list = [
     category: "dessert",
     gold: 10,
     img: "/image/PNG_food_icons/apple.png",
-    grow: 12,
+    grow: 2,
+    attract: 1,
   },
   {
     id: 4,
@@ -31,7 +34,8 @@ const list = [
     category: "dessert",
     gold: 12,
     img: "/image/PNG_food_icons/banana.png",
-    grow: 14,
+    grow: 2.4,
+    attract: 1.2,
   },
   {
     id: 5,
@@ -39,7 +43,8 @@ const list = [
     category: "dessert",
     gold: 15,
     img: "/image/PNG_food_icons/eggs.png",
-    grow: 17.5,
+    grow: 3,
+    attract: 2.5,
   },
   {
     id: 6,
@@ -47,7 +52,8 @@ const list = [
     category: "dessert",
     gold: 18,
     img: "/image/PNG_food_icons/ice_cream.png",
-    grow: 20.7,
+    grow: 3.6,
+    attract: 3.4,
   },
   {
     id: 7,
@@ -55,7 +61,8 @@ const list = [
     category: "dessert",
     gold: 20,
     img: "/image/PNG_food_icons/jelly_bear.png",
-    grow: 22.8,
+    grow: 4,
+    attract: 4.2,
   },
   {
     id: 8,
@@ -63,7 +70,8 @@ const list = [
     category: "dessert",
     gold: 25,
     img: "/image/PNG_food_icons/pie.png",
-    grow: 28.2,
+    grow: 5,
+    attract: 4.8,
   },
   {
     id: 9,
@@ -184,6 +192,7 @@ const ListObject = styled.div`
 
   h2 {
     text-align: center;
+    margin-top: 10%;
     margin-bottom: 10%;
     img {
       width: 50%;
@@ -211,12 +220,11 @@ const Point = styled.div`
   font-weight: 800;
 `;
 
-
 const StoreList = ({
   Gold,
   petlist,
+  myPets,
   category,
-  purchasedPets,
   handlePurchase,
   handleSales,
   inventory,
@@ -224,51 +232,35 @@ const StoreList = ({
   handleSelect,
 }) => {
   // 필터링된 동물 목록을 생성
-  const filteredPetList = category === "pet" && petlist
-    ? petlist
-        .filter(ele => ![1, 2, 3].includes(ele.id)) // id가 1, 2, 3인 동물 제외
-        .filter(ele => !purchasedPets.includes(ele.name)) // 구매한 동물 제외
-        .filter(pet => pet.category !== 'main') // 메인 페이지에서 선택한 동물 제외
-    : [];
+  const filteredPetList =
+    category === "pet" && petlist
+      ? petlist.filter((ele) => ![...myPets].includes(ele.name)) // 가지고 있는 동물 제외
+      : [];
 
-    return (
-      <ListDiv>
-        <div className="element">
-          {category === "pet"
-            ? filteredPetList.map((ele) => (
-                <div key={ele.id}>
-                  <ListObject
-                    className={select === ele ? "select" : ""}
-                    onClick={() => handleSelect(ele)}
-                  >
-                    <h2>
-                      <img src={process.env.PUBLIC_URL + ele.img()} alt={ele.name} />
-                    </h2>
-                    <p>{ele.name}</p>
-                  </ListObject>
-                  <Point>{ele.gold} P</Point>
-                </div>
-              ))
-          : category === "sales" && inventory
-          ? 
-          inventory
-          .filter(ele => !"pet".includes(ele.category))
-          .map((ele) => (
+  return (
+    <ListDiv>
+      <div className="element">
+        {category === "pet"
+          ? filteredPetList.map((ele) => (
               <div key={ele.id}>
                 <ListObject
                   className={select === ele ? "select" : ""}
                   onClick={() => handleSelect(ele)}
                 >
                   <h2>
-                    <img src={process.env.PUBLIC_URL + ele.img} alt={ele.name} />
+                    <img
+                      src={process.env.PUBLIC_URL + ele.img()}
+                      alt={ele.name}
+                    />
                   </h2>
                   <p>{ele.name}</p>
                 </ListObject>
                 <Point>{ele.gold} P</Point>
               </div>
             ))
-          : list
-              .filter(ele => category === ele.category)
+          : category === "sales" && inventory
+          ? inventory
+              .filter((ele) => !"pet".includes(ele.category))
               .map((ele) => (
                 <div key={ele.id}>
                   <ListObject
@@ -276,7 +268,29 @@ const StoreList = ({
                     onClick={() => handleSelect(ele)}
                   >
                     <h2>
-                      <img src={process.env.PUBLIC_URL + ele.img} alt={ele.name} />
+                      <img
+                        src={process.env.PUBLIC_URL + ele.img}
+                        alt={ele.name}
+                      />
+                    </h2>
+                    <p>{ele.name}</p>
+                  </ListObject>
+                  <Point>{ele.gold} P</Point>
+                </div>
+              ))
+          : list
+              .filter((ele) => category === ele.category)
+              .map((ele) => (
+                <div key={ele.id}>
+                  <ListObject
+                    className={select === ele ? "select" : ""}
+                    onClick={() => handleSelect(ele)}
+                  >
+                    <h2>
+                      <img
+                        src={process.env.PUBLIC_URL + ele.img}
+                        alt={ele.name}
+                      />
                     </h2>
                     <p>{ele.name}</p>
                   </ListObject>

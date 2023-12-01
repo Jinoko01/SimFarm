@@ -120,14 +120,14 @@ const SelectPage = ({ petlist, select, setSelect }) => {
         <div
           className="startBtn"
           onClick={() => {
-            if(select !== null){
+            if (select !== null) {
               navigate("/contest/result", {
                 state: {
                   attract: select.attract,
                   affect: select.affect,
                 },
               });
-            }else{
+            } else {
               console.log("동물 없음");
             }
           }}

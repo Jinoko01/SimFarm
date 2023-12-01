@@ -59,13 +59,11 @@ const ListDiv = styled.div`
   }
 `;
 
-const AnimalList = ({ Gold, handleToggle, petlist, myPets }) => {
-  const filteredList = petlist.filter(animal => myPets.includes(animal.name));
-
+const AnimalList = ({ Gold, handleToggle, petlist }) => {
   return (
     <AnimalListDiv>
       <ListDiv>
-        {filteredList.map((animal) => (
+        {petlist.map((animal) => (
           <div className="item" onClick={() => handleToggle(animal.id)}>
             <h3>
               <img
