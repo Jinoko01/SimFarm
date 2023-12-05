@@ -7,11 +7,9 @@ const ResultPage = () => {
   const attract = location.state.attract;
   const affect = location.state.affect;
 
-  const endingImg = `${process.env.PUBLIC_URL}/result/${eng}_${
+  const endingImg = `${process.env.PUBLIC_URL}/image/result/${eng}_${
     attract > 80 ? "attractHigh" : "attractLow"
   }_${affect > 70 ? "affectHigh" : "affectLow"}.png`;
-
-  const testImg = `${process.env.PUBLIC_URL}/image/myroom.png`;
 
   return (
     <div className="wrapping" style={{ backgroundImage: `url(${endingImg})` }}>
