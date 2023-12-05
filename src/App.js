@@ -45,6 +45,7 @@ function App() {
       attract: 50,
       affect: 0,
       accessory: "",
+      eng: "beetle",
     },
     {
       id: 2,
@@ -66,6 +67,7 @@ function App() {
       attract: 50,
       affect: 0,
       accessory: "",
+      eng: "bird",
     },
     {
       id: 3,
@@ -87,6 +89,7 @@ function App() {
       attract: 50,
       affect: 0,
       accessory: "",
+      eng: "snake",
     },
     {
       id: 4,
@@ -104,6 +107,7 @@ function App() {
       attract: 60,
       affect: 0,
       accessory: "",
+      eng: "frog",
     },
     {
       id: 5,
@@ -121,6 +125,7 @@ function App() {
       attract: 50,
       affect: 0,
       accessory: "",
+      eng: "bat",
     },
     {
       id: 6,
@@ -138,6 +143,7 @@ function App() {
       attract: 70,
       affect: 0,
       accessory: "",
+      eng: "goat",
     },
     {
       id: 7,
@@ -155,6 +161,7 @@ function App() {
       attract: 50,
       affect: 0,
       accessory: "",
+      eng: "snail",
     },
     {
       id: 8,
@@ -172,6 +179,7 @@ function App() {
       attract: 50,
       affect: 0,
       accessory: "",
+      eng: "bee",
     },
   ]);
 
