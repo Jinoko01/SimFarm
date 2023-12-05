@@ -143,7 +143,7 @@ function App() {
       attract: 70,
       affect: 0,
       accessory: "",
-      eng: "goat",
+      eng: "deer",
     },
     {
       id: 7,

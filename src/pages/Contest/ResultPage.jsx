@@ -14,7 +14,7 @@ const ResultPage = () => {
   const testImg = `${process.env.PUBLIC_URL}/image/myroom.png`;
 
   return (
-    <div className="wrapping" style={{ backgroundImage: `url(${testImg})` }}>
+    <div className="wrapping" style={{ backgroundImage: `url(${endingImg})` }}>
       <div>이름: {eng}</div>
       <div>매력: {attract}</div>
       <div>애정도: {affect}</div>
