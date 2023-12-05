@@ -52,7 +52,7 @@ const list = [
     category: "dessert",
     gold: 18,
     img: "/image/PNG_food_icons/ice_cream.png",
-    grow: 3.6,
+    grow: 4,
     attract: 3.4,
   },
   {
@@ -61,7 +61,7 @@ const list = [
     category: "dessert",
     gold: 20,
     img: "/image/PNG_food_icons/jelly_bear.png",
-    grow: 4,
+    grow: 5.5,
     attract: 4.2,
   },
   {
@@ -70,7 +70,7 @@ const list = [
     category: "dessert",
     gold: 25,
     img: "/image/PNG_food_icons/pie.png",
-    grow: 5,
+    grow: 7,
     attract: 4.8,
   },
   {
@@ -79,7 +79,7 @@ const list = [
     category: "accessory",
     gold: 5,
     img: "/image/Hat Pack/classicFedora.png",
-    attract: 3,
+    attract: 5,
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const list = [
     category: "accessory",
     gold: 10,
     img: "/image/Hat Pack/bunny.png",
-    attract: 6,
+    attract: 10,
   },
   {
     id: 11,
@@ -95,7 +95,7 @@ const list = [
     category: "accessory",
     gold: 15,
     img: "/image/Hat Pack/horseHead.png",
-    attract: 10,
+    attract: 15,
   },
   {
     id: 12,
@@ -103,7 +103,7 @@ const list = [
     category: "accessory",
     gold: 20,
     img: "/image/Hat Pack/pinwheel.png",
-    attract: 14,
+    attract: 20,
   },
   {
     id: 13,
@@ -111,7 +111,7 @@ const list = [
     category: "accessory",
     gold: 25,
     img: "/image/Hat Pack/crown.png",
-    attract: 17,
+    attract: 25,
   },
 ];
 
