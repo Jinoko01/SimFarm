@@ -149,10 +149,7 @@ const AnimalDetail = ({
           </div>
           <div>
             <p className="stat">매력:</p>
-            <p className="value">
-              {object.attract +
-                (object.accessory ? object.accessory.attract : 0)}
-            </p>
+            <p className="value">{object.attract}</p>
           </div>
           <div>
             <p className="stat">애정도:</p>

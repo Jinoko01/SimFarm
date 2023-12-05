@@ -36,9 +36,11 @@ const AccessoryModal = ({ show, hide, object, inventory, setInventory }) => {
       return;
     }
     if (object.accessory) {
+      object.attract -= object.accessory.attract;
       setInventory((inventory) => inventory.concat(object.accessory));
     }
     object.accessory = click;
+    object.attract += click.attract;
     setInventory((inventory) =>
       inventory.filter((element) => element.id !== click.id)
     );
