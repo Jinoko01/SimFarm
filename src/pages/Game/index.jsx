@@ -3,7 +3,7 @@ import { useCallback, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import "../../style/GlobalCSS.scss";
 
-const Game = ({onIncrease}) => {
+const Game = ({ onIncrease }) => {
   const {
     unityProvider,
     // sendMessage, // unity 함수를 호출하기 위한 sendMessage 추가
@@ -11,15 +11,18 @@ const Game = ({onIncrease}) => {
     removeEventListener, // unity -> react 통신
     UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate,
   } = useUnityContext({
-    loaderUrl: "build/Adv_unity.loader.js",
-    dataUrl: "build/Adv_unity.data",
-    frameworkUrl: "build/Adv_unity.framework.js",
-    codeUrl: "build/Adv_unity.wasm",
+    loaderUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.loader.js`,
+    dataUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.data`,
+    frameworkUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.framework.js`,
+    codeUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.wasm`,
   });
 
-  const setScoreUp = useCallback((curScore) => {
-    onIncrease(curScore);
-  }, [onIncrease]);
+  const setScoreUp = useCallback(
+    (curScore) => {
+      onIncrease(curScore);
+    },
+    [onIncrease]
+  );
 
   useEffect(() => {
     addEventListener("reactScoreUp", setScoreUp);
