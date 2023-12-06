@@ -16,7 +16,7 @@ const Header = () => {
   const [curLocation, setCurLocation] = useState(location);
 
   useEffect(() => {
-    if (curLocation.pathname === "/contest/result") {
+    if (curLocation.pathname === "/Simfarm/contest/result") {
       setDisabled(true);
     } else {
       setDisabled(false);

@@ -252,12 +252,12 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         {hasChosen ? (
-          <Route path="/" element={<Navigate to="/myroom" />} />
+          <Route path="/Simfarm" element={<Navigate to="/Simfarm/myroom" />} />
         ) : (
-          <Route path="/" element={<Navigate to="/" />} />
+          <Route path="/Simfarm" element={<Navigate to="/Simfarm" />} />
         )}
         <Route
-          index
+          path="/Simfarm"
           element={
             <MainPage
               hasChosen={hasChosen}
@@ -268,7 +268,7 @@ function App() {
           }
         />
         <Route
-          path="/myroom"
+          path="/Simfarm/myroom"
           element={
             <MyRoom
               hasChosen={hasChosen}
@@ -281,7 +281,7 @@ function App() {
           }
         />
         <Route
-          path="/store"
+          path="/Simfarm/store"
           element={
             <Store
               Gold={Gold}
@@ -296,10 +296,13 @@ function App() {
             />
           }
         />
-        <Route path="/game" element={<Game onIncrease={increaseValue} />} />
-        <Route path="/contest" element={<Contest />} />
         <Route
-          path="/contest/select"
+          path="/Simfarm/game"
+          element={<Game onIncrease={increaseValue} />}
+        />
+        <Route path="/Simfarm/contest" element={<Contest />} />
+        <Route
+          path="/Simfarm/contest/select"
           element={
             <SelectPage
               petlist={ownedPetsList}
@@ -308,7 +311,7 @@ function App() {
             />
           }
         />
-        <Route path="/contest/result" element={<ResultPage />} />
+        <Route path="/Simfarm/contest/result" element={<ResultPage />} />
       </Route>
     </Routes>
   );

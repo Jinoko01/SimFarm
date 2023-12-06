@@ -61,7 +61,7 @@ const Navi = () => {
   const [curLocation, setCurLocation] = useState(location);
 
   useEffect(() => {
-    if (curLocation.pathname === "/contest/result") {
+    if (curLocation.pathname === "/Simfarm/contest/result") {
       setDisabled(true);
     } else {
       setDisabled(false);
@@ -83,7 +83,7 @@ const Navi = () => {
             <Categories
               key={place.name}
               className={({ isActive }) => (isActive ? "active" : undefined)}
-              to={`/${place.name}`}
+              to={`/Simfarm/${place.name}`}
               onClick={handleDisabled}
             >
               {place.text}

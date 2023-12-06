@@ -121,7 +121,7 @@ const SelectPage = ({ petlist, select, setSelect }) => {
           className="startBtn"
           onClick={() => {
             if (select !== null) {
-              navigate("/contest/result", {
+              navigate("/Simfarm/contest/result", {
                 state: {
                   eng: select.eng,
                   name: select.name,
