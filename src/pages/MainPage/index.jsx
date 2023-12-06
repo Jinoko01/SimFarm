@@ -40,7 +40,7 @@ const PetName = styled.p`
 `;
 
 const MainPageDiv = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "image/petshop.jpg"});
+  background-image: url(${process.env.PUBLIC_URL + "/image/petshop.jpg"});
 
   .mainTitle {
     h1 {

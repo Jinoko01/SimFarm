@@ -252,9 +252,9 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         {hasChosen ? (
-          <Route path="/Simfarm" element={<Navigate to="/Simfarm/myroom" />} />
+          <Route path="/" element={<Navigate to="/Simfarm/myroom" />} />
         ) : (
-          <Route path="/Simfarm" element={<Navigate to="/Simfarm" />} />
+          <Route path="/" element={<Navigate to="/Simfarm" />} />
         )}
         <Route
           path="/Simfarm"
