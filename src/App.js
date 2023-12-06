@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MyRoom from "./pages/MyRoom";
 import Store from "./pages/Store";
@@ -10,10 +10,10 @@ import SelectPage from "./pages/Contest/SelectPage";
 import ResultPage from "./pages/Contest/ResultPage";
 
 function App() {
-  // localStorage에서 hasChosen 값을 읽어와서 초기 상태를 설정
-  const [hasChosen, setHasChosen] = useState(
-    localStorage.getItem("hasChosen") === "true"
-  );
+  const sessionSearch = JSON.parse(sessionStorage.getItem("hasChosen"));
+  // sessionStorage에서 hasChosen 값을 읽어와서 초기 상태를 설정
+  const [hasChosen, setHasChosen] = useState(sessionSearch === true);
+  const navigation = useNavigate();
   //====================== 게임 전용 변수 및 함수==========================
   const [Gold, setGold] = useState(1000);
   const [myPets, setMyPets] = useState([]); // 내가 갖고있는 동물
@@ -242,8 +242,11 @@ function App() {
 
   useEffect(() => {
     // hasChosen 상태가 변경될 때 localStorage 값을 업데이트
-    localStorage.setItem("hasChosen", hasChosen);
-  }, [hasChosen]);
+    sessionStorage.setItem("hasChose", JSON.stringify(hasChosen));
+    if (!hasChosen) {
+      navigation("/");
+    }
+  }, [hasChosen, navigation]);
 
   return (
     <Routes>
@@ -251,22 +254,24 @@ function App() {
         {hasChosen ? (
           <Route path="/" element={<Navigate to="/myroom" />} />
         ) : (
-          <Route
-            index
-            element={
-              <MainPage
-                hasChosen={hasChosen}
-                setHasChosen={setHasChosen}
-                setMyPets={setMyPets}
-                nextAnimalId={nextAnimalId}
-              />
-            }
-          />
+          <Route path="/" element={<Navigate to="/" />} />
         )}
+        <Route
+          index
+          element={
+            <MainPage
+              hasChosen={hasChosen}
+              setHasChosen={setHasChosen}
+              setMyPets={setMyPets}
+              nextAnimalId={nextAnimalId}
+            />
+          }
+        />
         <Route
           path="/myroom"
           element={
             <MyRoom
+              hasChosen={hasChosen}
               Gold={Gold}
               setGold={setGold}
               petlist={ownedPetsList}
