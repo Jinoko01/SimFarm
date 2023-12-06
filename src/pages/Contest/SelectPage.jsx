@@ -124,6 +124,7 @@ const SelectPage = ({ petlist, select, setSelect }) => {
               navigate("/contest/result", {
                 state: {
                   eng: select.eng,
+                  name: select.name,
                   attract: select.attract,
                   affect: select.affect,
                 },
