@@ -244,7 +244,7 @@ function App() {
     // hasChosen 상태가 변경될 때 localStorage 값을 업데이트
     sessionStorage.setItem("hasChose", JSON.stringify(hasChosen));
     if (!hasChosen) {
-      navigation("/");
+      navigation("/Simfarm");
     }
   }, [hasChosen, navigation]);
 

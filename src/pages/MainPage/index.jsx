@@ -102,7 +102,7 @@ const MainPage = ({ hasChosen, setHasChosen, setMyPets, nextAnimalId }) => {
     if (selectedPet && !hasChosen) {
       setHasChosen(true);
       setMyPets((prevMyPets) => [...prevMyPets, selectedPet.name]);
-      navigateTo("/myroom");
+      navigateTo("/Simfarm/myroom");
       nextAnimalId.current += 1;
     }
   }, [
@@ -115,7 +115,7 @@ const MainPage = ({ hasChosen, setHasChosen, setMyPets, nextAnimalId }) => {
   ]);
 
   if (hasChosen) {
-    return <Navigate to="/myroom" />;
+    return <Navigate to="/Simfarm/myroom" />;
   } else {
     return (
       <MainPageDiv className="wrapping">
