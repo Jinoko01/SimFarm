@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const HeaderDiv = styled.div`
@@ -9,9 +10,28 @@ const HeaderDiv = styled.div`
 `;
 
 const Header = () => {
+  const [disabled, setDisabled] = useState(false);
+
+  const location = useLocation();
+  const [curLocation, setCurLocation] = useState(location);
+
+  useEffect(() => {
+    if (curLocation.pathname === "/contest/result") {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+    setCurLocation(location);
+  }, [curLocation, location]);
+
+  const handleDisabled = (e) => {
+    if (disabled === true) {
+      e.preventDefault();
+    }
+  };
   return (
     <HeaderDiv>
-      <NavLink to="/">
+      <NavLink to="/" onClick={handleDisabled}>
         <img
           src={`${process.env.PUBLIC_URL}/image/Logo.png`}
           alt="Logo"

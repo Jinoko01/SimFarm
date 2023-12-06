@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const NaviDiv = styled.div`
@@ -54,6 +55,26 @@ const places = [
 ];
 
 const Navi = () => {
+  const [disabled, setDisabled] = useState(false);
+
+  const location = useLocation();
+  const [curLocation, setCurLocation] = useState(location);
+
+  useEffect(() => {
+    if (curLocation.pathname === "/contest/result") {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+    setCurLocation(location);
+  }, [curLocation, location]);
+
+  const handleDisabled = (e) => {
+    if (disabled === true) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <NaviDiv>
       <NavBar>
@@ -63,6 +84,7 @@ const Navi = () => {
               key={place.name}
               className={({ isActive }) => (isActive ? "active" : undefined)}
               to={`/${place.name}`}
+              onClick={handleDisabled}
             >
               {place.text}
             </Categories>

@@ -7,10 +7,10 @@ const ResultDiv = styled.div`
     background-color: rgba(255, 255, 255, 0.4);
     border: 10px solid rgba(0, 0, 0, 1);
     margin: 0 auto;
-    margin-top: 35%;
+    margin-top: 28%;
     width: 100%;
     h1 {
-      padding: 4%;
+      padding: 4% 0 4% 0;
       margin: 0 auto;
       text-align: center;
       font-size: 28px;
@@ -20,6 +20,20 @@ const ResultDiv = styled.div`
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
+    }
+
+    button {
+      display: block;
+      width: 20%;
+      margin: 0 auto;
+      margin-bottom: 3%;
+      padding: 1%;
+      border: 3px solid black;
+      border-radius: 20px;
+      text-align: center;
+      background-image: linear-gradient(to bottom, #5c648d, #c2b4d7);
+      cursor: pointer;
+      color: #e5e5e5;
     }
   }
 `;
@@ -35,6 +49,10 @@ const ResultPage = () => {
     attract > 80 ? "attractHigh" : "attractLow"
   }_${affect > 70 ? "affectHigh" : "affectLow"}.png`;
 
+  const handleRestart = () => {
+    window.location.reload();
+  };
+
   return (
     <ResultDiv
       className="wrapping"
@@ -47,6 +65,7 @@ const ResultPage = () => {
           <br />
           {affect > 70 ? "행복해합니다." : "불행해합니다."}
         </h1>
+        <button onClick={handleRestart}>다시하기</button>
       </div>
     </ResultDiv>
   );
