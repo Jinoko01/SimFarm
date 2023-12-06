@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bef931cd.css",
+    "main.js": "/static/js/main.c5c69ac7.js",
+    "static/js/787.96000ecd.chunk.js": "/static/js/787.96000ecd.chunk.js",
+    "static/media/메이플스토리.ttf": "/static/media/메이플스토리.9d9497585053c96c8082.ttf",
+    "static/media/Bazzi.woff": "/static/media/Bazzi.c7f7611ec33e5618db24.woff",
+    "index.html": "/index.html",
+    "main.bef931cd.css.map": "/static/css/main.bef931cd.css.map",
+    "main.c5c69ac7.js.map": "/static/js/main.c5c69ac7.js.map",
+    "787.96000ecd.chunk.js.map": "/static/js/787.96000ecd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bef931cd.css",
+    "static/js/main.c5c69ac7.js"
+  ]
+}
