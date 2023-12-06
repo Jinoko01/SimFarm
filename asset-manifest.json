@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/SimFarm/static/css/main.3b4973d7.css",
-    "main.js": "/SimFarm/static/js/main.efcfaf8c.js",
+    "main.js": "/SimFarm/static/js/main.93c423a5.js",
     "static/js/787.96000ecd.chunk.js": "/SimFarm/static/js/787.96000ecd.chunk.js",
     "static/media/메이플스토리.ttf": "/SimFarm/static/media/메이플스토리.9d9497585053c96c8082.ttf",
     "static/media/Bazzi.woff": "/SimFarm/static/media/Bazzi.c7f7611ec33e5618db24.woff",
     "index.html": "/SimFarm/index.html",
     "main.3b4973d7.css.map": "/SimFarm/static/css/main.3b4973d7.css.map",
-    "main.efcfaf8c.js.map": "/SimFarm/static/js/main.efcfaf8c.js.map",
+    "main.93c423a5.js.map": "/SimFarm/static/js/main.93c423a5.js.map",
     "787.96000ecd.chunk.js.map": "/SimFarm/static/js/787.96000ecd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3b4973d7.css",
-    "static/js/main.efcfaf8c.js"
+    "static/js/main.93c423a5.js"
   ]
 }
