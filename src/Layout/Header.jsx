@@ -31,7 +31,7 @@ const Header = () => {
   };
   return (
     <HeaderDiv>
-      <NavLink to="/" onClick={handleDisabled}>
+      <NavLink to="/Simfarm" onClick={handleDisabled}>
         <img
           src={`${process.env.PUBLIC_URL}/image/Logo.png`}
           alt="Logo"
