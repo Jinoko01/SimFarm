@@ -10,5 +10,5 @@ SimFarm 게임은 플레이어가 직접 동물들을 케어하면서 최고의 
 ## 프로젝트 설명   
 SimFarm 프로젝트는 웹으로 게임을 만들어보고자 동물키우기 게임을 주제로 만들어본 프로젝트입니다.   
 ## 사용된 기술스택   
-<img src="https://img.shields.io/badge/React-#61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Styled-components-#DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/Unity-#000000?style=for-the-badge&logo=unity&logoColor=white">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Styled-components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white">
 </div>
