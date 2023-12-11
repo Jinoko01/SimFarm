@@ -15,7 +15,7 @@ function App() {
   const [hasChosen, setHasChosen] = useState(sessionSearch === true);
   const navigation = useNavigate();
   //====================== 게임 전용 변수 및 함수==========================
-  const [Gold, setGold] = useState(200);
+  const [Gold, setGold] = useState(1000);
   const [myPets, setMyPets] = useState([]); // 내가 갖고있는 동물
   const increaseValue = (increment) => {
     setGold(Gold + increment);
