@@ -1,13 +1,1 @@
-<center>
-  
-![SimFarm](/public/image/Logo.png)
-
-</center>
-
-##<center>배포 링크</center>
-
-<center>
-  
-[SimFarm](https://hwangyongjin.github.io/SimFarm)
-
-</center>
+<div><img src="/public/image/Logo.png" alt="SimFarm" /></div>
