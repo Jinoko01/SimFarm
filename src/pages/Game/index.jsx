@@ -11,10 +11,10 @@ const Game = ({ onIncrease }) => {
     removeEventListener, // unity -> react 통신
     UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate,
   } = useUnityContext({
-    loaderUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.loader.js`,
-    dataUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.data`,
-    frameworkUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.framework.js`,
-    codeUrl: `${process.env.PUBLIC_URL}/build/Adv_unity.wasm`,
+    loaderUrl: `${process.env.PUBLIC_URL}/build/ADV_game.loader.js`,
+    dataUrl: `${process.env.PUBLIC_URL}/build/ADV_game.data`,
+    frameworkUrl: `${process.env.PUBLIC_URL}/build/ADV_game.framework.js`,
+    codeUrl: `${process.env.PUBLIC_URL}/build/ADV_game.wasm`,
   });
 
   const setScoreUp = useCallback(
