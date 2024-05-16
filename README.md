@@ -4,7 +4,7 @@
 
 ## 배포 링크
 
-[SimFarm](https://hwangyongjin.github.io/SimFarm)   
+[SimFarm](https://jinoko01.github.io/SimFarm)   
 ## 프로젝트명   
 SimFarm 게임은 플레이어가 직접 동물들을 케어하면서 최고의 동물로 키워내는 게임입니다.   
 ## 프로젝트 설명   
